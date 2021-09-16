@@ -61,15 +61,10 @@ function get_course($id){
 	$query="SELECT *
             FROM courses
             WHERE id = $id
-            AND del_flg IS NULL
+            AND del_flg = 0
             ";
 	$results = $wpdb->get_row($query);
     // $results = set_displayName($results);
-    if($results->display_flg == 1){
-        $results->display_name = "表示";
-    }else{
-        $results->display_name = "非表示";
-    }
 	return $results;
 }
 

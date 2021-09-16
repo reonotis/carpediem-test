@@ -4,7 +4,10 @@
         exit;
     }else{
         $course = get_course($_GET['ID']);
-        if(!$course)exit;
+        if(!$course){
+            echo "不正なアクセスを検知しました。";
+            exit;
+        }
 
         $membership_types = get_mapping_membership_types($_GET['ID']);
 
