@@ -64,7 +64,12 @@ function get_course($id){
             AND del_flg IS NULL
             ";
 	$results = $wpdb->get_row($query);
-    $results = set_displayName($results);
+    // $results = set_displayName($results);
+    if($results->display_flg == 1){
+        $results->display_name = "表示";
+    }else{
+        $results->display_name = "非表示";
+    }
 	return $results;
 }
 
