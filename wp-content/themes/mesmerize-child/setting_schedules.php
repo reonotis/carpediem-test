@@ -192,7 +192,7 @@ function make_schedules_html($schedules){
 
 // var_dump($schedules);exit;
     $open_time = '05:45:00';
-    $close_time = '21:45:00';
+    $close_time = '22:45:00';
 
     $html ="
     <div class='schedule_section' >
