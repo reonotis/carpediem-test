@@ -254,13 +254,41 @@ Version: 1.6.106
 	height: calc(14px * 9);
 }
 
-
-
-
 @media screen and (max-width:650px){
 	.lessonTitle{
 		line-height: 10px;
 	}
+
+	.time1{
+		height: 11px ;
+	}
+	.time2{
+		height: calc(11px * 2) ;
+	}
+	.time3{
+		height: calc(11px * 3);
+	}
+	.time4{
+		height: calc(11px * 4);
+	}
+	.time5{
+		height: calc(11px * 5);
+	}
+	.time6{
+		height: calc(11px * 6);
+	}
+	.time7{
+		height: calc(11px * 7);
+	}
+	.time8{
+		height: calc(11px * 8);
+	}
+	.time9{
+		height: calc(11px * 9);
+	}
+
+
+
 }
 
 

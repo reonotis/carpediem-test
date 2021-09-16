@@ -7,7 +7,7 @@
 
         <?php settings_errors(); ?>
         <!-- <table class="widefat fixed striped"> -->
-        <table class="widefat fixed striped">
+        <table class="widefat striped">
             <thead>
                 <tr>
                     <th>開催曜日</th>
