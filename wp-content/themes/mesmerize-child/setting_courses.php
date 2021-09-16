@@ -64,7 +64,7 @@ function get_course($id){
             AND del_flg IS NULL
             ";
 	$results = $wpdb->get_row($query);
-    $results = set_displayNames($results);
+    $results = set_displayName($results);
 	return $results;
 }
 
