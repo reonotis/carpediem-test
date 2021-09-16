@@ -1,0 +1,267 @@
+/*
+Theme Name:mesmerize-child
+Template:mesmerize
+Version: 1.6.106
+
+*/
+
+
+/* 週間スケジュール */
+.schedule_section{
+    width: 100%;
+    color: #111;
+}
+@media screen and (max-width:650px){
+	.schedule_section{
+		overflow:scroll;
+	}
+}
+.schedule_area{
+    width: 100%;
+    max-width: 1000px;
+	min-width: 500px;
+    margin: 0 auto;
+}
+.schedule_headerArea,
+.schedule_bodyArea{
+    position: relative;
+    width: 100%;
+    text-align: center;
+    margin: 0 0 20px;
+    display: table;
+    table-layout: auto;
+}
+.schedule_bodyArea{
+    border: solid 1px #777;
+}
+
+.MIDASHI{
+    position: relative;
+    width: 70px;
+    display: table-cell;
+    vertical-align: middle;
+    padding: 10px 0;
+}
+@media screen and (max-width:650px){
+	.MIDASHI{
+		width: 50px ;
+	}
+}
+.weekArea{
+    background: #000;
+	color: #fff;
+    position: relative;
+    width: 100%;
+    width: calc((100% - 100px ) / 7 );
+    display: table-cell;
+    vertical-align: middle;
+	border-left: solid 1px #888;
+}
+.weekArea::after{
+    position: absolute;
+    content: "";
+    background: #000;
+    height: 20px;
+    width: 20px;
+	right: 0;
+	left: 0;
+	margin: 0 auto;
+	transform: rotate(-45deg);
+}
+.weekArea.saturday{
+	background : #04438b;
+}
+.weekArea.saturday::after{
+	background : #04438b;
+}
+.weekArea.sunday{
+	background : #8b0404;
+	color: #fff;
+}
+.weekArea.sunday::after{
+	background : #8b0404;
+}
+
+.schedule_bodyArea{
+    width: 100%;
+    font-size      : 11px ;
+    letter-spacing : 1px ;
+    margin-bottom  : 20px ;
+    display: flex;
+    box-sizing     : content-box ;
+}
+
+
+
+
+
+/*************************************************/
+/* 時間割 */
+/*************************************************/
+
+
+.times{
+	float          : left ;
+	display: block;
+	width          : 70px ;
+	box-sizing     : content-box ;
+}
+@media screen and (max-width:650px){
+	.times{
+		width: 50px ;
+	}
+}
+
+.weeks{
+	border-left    : solid 1px #aaa ;
+	width          : calc((100% - 70px) / 7 );
+	float          : left ;
+	box-sizing     : content-box ;
+}
+@media screen and (max-width:650px){
+	.weeks{
+		width          : calc((100% - 30px) / 7 );
+	}
+}
+
+
+
+
+.JIKAN{
+    position: relative;
+	height         : 14px ;
+}
+.times>.JIKAN{
+	height         : 14px ;
+	position       : relative ;
+	top            : -6.5px ;
+	margin         : 0 0 0 2px;
+}
+@media screen and (max-width:650px){
+	.JIKAN{
+		height         : 11px ;
+	}
+	.times>.JIKAN{
+		height         : 11px ;
+	}
+}
+.weeks>.JIKAN{
+	background : #fff ;
+	border-bottom  : solid 1px #eee ;
+}
+
+.weeks>.JIKAN:last-child{
+	border-bottom  : none ;
+
+}
+
+.weeks>.JIKAN.grayBox{
+	background : #eee ;
+	border-bottom  : solid 1px #ddd ;
+}
+.weeks>.JIKAN.J45{
+	border-bottom  : solid 1px #aaa ;
+}
+.JIKAN.J45:last-child{
+	border-bottom  : none !important;
+}
+
+.JIKANTIME{
+	margin         : 0 ;
+	padding        : 0 ;
+	line-height    : 12px ;
+	font-size      : 10px ;
+	display        : flex ;
+	align-items    : center ;
+	box-sizing     : content-box ;
+}
+@media screen and (max-width:650px){
+	.JIKANTIME{
+		line-height    : 12px ;
+		font-size      : 7px ;
+	}
+}
+.JIKANTIME:before{
+	content        : "";
+	height         : 1px ;
+	width          : 5px ;
+	flex-grow      : 1 ;
+	box-sizing     : content-box ;
+}
+.JIKANTIME:after{
+	content: "";
+	height: 1px ;
+	width: 5px ;
+	background: #aaa;
+	flex-grow: 1;
+	box-sizing: content-box ;
+}
+
+
+@media screen and (max-width:650px){
+	.implementationDate{
+		display:none;
+	}
+}
+
+.KOUSU{
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    box-sizing: inherit;
+    align-items: center;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 10px;
+    height: 14px;
+    z-index: 100;
+    letter-spacing: -.1px;
+    color: #111;
+}
+.lessonTitle{
+    margin: 0 0 2px;
+	line-height: 15px;
+}
+.time1{
+	height: 12px ;
+}
+.time2{
+	height: calc(14px * 2) ;
+}
+.time2 > .lessonTitle{
+    line-height: 10px;
+}
+.time3{
+	height: calc(14px * 3);
+}
+.time4{
+	height: calc(14px * 4);
+}
+.time5{
+	height: calc(14px * 5);
+}
+.time6{
+	height: calc(14px * 6);
+}
+.time7{
+	height: calc(14px * 7);
+}
+.time8{
+	height: calc(14px * 8);
+}
+.time9{
+	height: calc(14px * 9);
+}
+
+
+
+
+@media screen and (max-width:650px){
+	.lessonTitle{
+		line-height: 10px;
+	}
+}
+
+
+
