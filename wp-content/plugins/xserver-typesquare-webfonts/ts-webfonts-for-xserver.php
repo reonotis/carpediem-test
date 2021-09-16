@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: TypeSquare Webfonts for エックスサーバー
-Version: 1.2.1
+Version: 1.2.4
 Description: エックスサーバー株式会社が提供する各レンタルサーバーサービスでWebフォントを利用できるプラグインです。
 Author: XSERVER Inc.
 Author URI: https://www.xserver.ne.jp/

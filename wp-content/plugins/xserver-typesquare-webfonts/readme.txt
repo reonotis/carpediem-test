@@ -2,8 +2,8 @@
 Contributors: xserverjp
 Tags: fonts,Webfonts
 Requires at least: 4.3.1
-Tested up to: 5.3
-Stable tag: 1.2.1
+Tested up to: 5.7
+Stable tag: 1.2.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -141,7 +141,16 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 　◇X2 よくある質問
 　　http://www.xtwo.ne.jp/support/faq/
 
-= Changelog ==
+== Changelog ==
+= 1.2.4 =
+* プラグインのアイコン、バナー画像を変更
+
+= 1.2.3 =
+* 検証済み最新バージョンを更新
+
+= 1.2.2 =
+* 検証済み最新バージョンを更新
+
 = 1.2.1 =
 * Twenty-Twentyテーマの個別記事ページにおいて、フォントが適用されない不具合を修正
 
