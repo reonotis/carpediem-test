@@ -54,6 +54,7 @@ function get_schedules(){
             FROM schedules
             INNER JOIN courses ON courses.id = schedules.course_id
             WHERE schedules.del_flg IS NULL
+            ORDER BY week asc, time asc
             ";
 	$results = $wpdb->get_results($query);
     $results = set_schedule_displayNames($results);
