@@ -48,7 +48,9 @@ ul.dropdown-menu > li.hover > a {
     color: #111;
 	background: #888;
 }
-
+.header{
+	display: none;
+}
 
 
 
