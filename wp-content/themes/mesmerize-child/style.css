@@ -6,6 +6,35 @@ Version: 1.6.106
 */
 
 
+/* defaultの上書き */
+ul.dropdown-menu.active-line-bottom > .current_page_item > a,
+ul.dropdown-menu.active-line-bottom > .current-menu-item > a,
+ul.dropdown-menu.default > .current_page_item > a,
+ul.dropdown-menu.default > .current-menu-item > a {
+    border-bottom: 3px solid #000000;
+}
+
+@media (min-width: 768px){
+	ul.dropdown-menu > li:hover > a,
+	ul.dropdown-menu > li.hover > a {
+		color: #000000;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* 週間スケジュール */
 .schedule_section{
     width: 100%;
