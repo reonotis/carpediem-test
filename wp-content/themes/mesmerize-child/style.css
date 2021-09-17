@@ -10,7 +10,6 @@ Version: 1.6.106
 ul.dropdown-menu.active-line-bottom > .current_page_item > a,
 ul.dropdown-menu.active-line-bottom > .current-menu-item > a{
     border-bottom: 3px solid #000000;
-	padding: 5px ;
 }
 .coloured-nav ul.dropdown-menu.active-line-bottom > .current_page_item > a,
 .coloured-nav ul.dropdown-menu.active-line-bottom > .current-menu-item > a,
@@ -18,11 +17,6 @@ ul.dropdown-menu.active-line-bottom > .current-menu-item > a{
 .fixto-fixed ul.dropdown-menu.active-line-bottom > .current-menu-item > a
 {
     border-bottom: 3px solid #000000;
-}
-.page_item.page-item-2 > a,
-.page_item.page-item-13 > a
-{
-	padding: 5px ;
 }
 
 .coloured-nav ul.dropdown-menu.active-line-bottom > li:not(.current-menu-item):not(.current_page_item):hover > a,
@@ -34,7 +28,6 @@ ul.dropdown-menu.active-line-bottom > .current-menu-item > a{
 .fixto-fixed ul.dropdown-menu.default > li:not(.current-menu-item):not(.current_page_item).hover > a
 {
     color: #000000;
-	background: #ddd;
 }
 
 .coloured-nav ul.dropdown-menu.active-line-bottom > li:not(.current-menu-item):not(.current_page_item):hover > a,
@@ -45,15 +38,15 @@ ul.dropdown-menu.active-line-bottom > .current-menu-item > a{
 .fixto-fixed ul.dropdown-menu.active-line-bottom > li:not(.current-menu-item):not(.current_page_item).hover > a,
 .fixto-fixed ul.dropdown-menu.default > li:not(.current-menu-item):not(.current_page_item):hover > a,
 .fixto-fixed ul.dropdown-menu.default > li:not(.current-menu-item):not(.current_page_item).hover > a {
-    color: #fff;
-	background: #111;
+    color: #111;
+	background: #888;
 }
 
 @media (min-width: 768px){}
 ul.dropdown-menu > li:hover > a,
 ul.dropdown-menu > li.hover > a {
-    color: #fff;
-	background: #111;
+    color: #111;
+	background: #888;
 }
 
 
