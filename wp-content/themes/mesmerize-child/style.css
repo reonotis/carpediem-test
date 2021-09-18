@@ -143,15 +143,6 @@ ul.dropdown-menu > li.hover > a {
     box-sizing     : content-box ;
 }
 
-
-
-
-
-/*************************************************/
-/* 時間割 */
-/*************************************************/
-
-
 .times{
 	float          : left ;
 	display: block;
@@ -175,9 +166,6 @@ ul.dropdown-menu > li.hover > a {
 		width          : calc((100% - 30px) / 7 );
 	}
 }
-
-
-
 
 .JIKAN{
     position: relative;
@@ -338,10 +326,26 @@ ul.dropdown-menu > li.hover > a {
 	.time9{
 		height: calc(11px * 9);
 	}
-
-
-
 }
 
 
 
+/* プライベートレッスン費用一覧 */
+.privateLessonFee{
+	width : 500px;
+    border-collapse: separate;
+	border-spacing: 0px 10px;
+}
+.privateLessonFee th,
+.privateLessonFee td{
+    padding: 10px;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+	border-bottom: solid 1px #111;
+}
+.privateLessonFee th{
+	background: #111;
+	color: #fff;
+}
