@@ -349,3 +349,146 @@ ul.dropdown-menu > li.hover > a {
 	background: #111;
 	color: #fff;
 }
+
+
+
+/* インストラクターエリア */
+.instructorsSection{
+	width: 100%;
+}
+.instructorsArea{
+	width: 100%;
+	max-width: 1500px;
+	margin: 0 auto;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-around;
+}
+
+.instructorBox{
+	width: 400px;
+	margin : 0 auto 30px;
+	padding: 0 0 30px;
+	/* border: solid 1px #666; */
+	float: left;
+}
+
+.instr_img{
+	width: 350px;
+	height: 400px;
+	margin: 30px auto 0;
+    box-shadow: 2px 2px 40px 2px #ddd;
+}
+.instr_img img{
+	width: 350px;
+	height: 400px !important;
+	object-fit: cover;
+}
+.instr_level{
+	position: relative;
+	height: 40px;
+	background: #111;
+	color: #fff;
+	border-radius: 0 0 20% 20% / 0 0 15% 15%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.instr_level::before,
+.instr_level::after{
+	content:"";
+	position: absolute;
+	width: 28px;
+	height: 80px;
+	border-radius: 3px;
+	background: #111;
+	top: 5px;
+	left: 0;
+}
+.instr_level::before{
+    transform: rotate(20deg);
+	left: 20px;
+}
+.instr_level::after{
+	transform: rotate(-20deg);
+	left: 40px;
+}
+.instr_level_support{
+	position: relative;
+}
+.instr_level_support::before,
+.instr_level_support::after{
+    content: '';
+    position: absolute;
+    top: -52px;
+    border: none;
+}
+.instr_level_support::before{
+    left: 0;
+    border-top: solid 12px transparent;
+    border-right: solid 25px #959e9b;
+}
+.instr_level_support::after{
+    right: 0;
+    border-top: solid 12px transparent;
+    border-left: solid 25px #959e9b;
+}
+.instr_content{
+	width: 350px;
+	margin: 0 auto;
+	padding-bottom: 20px;
+    box-shadow: 2px 2px 40px 2px #ddd;
+}
+.instr_name{
+	width: 100%;
+	height: 50px;
+    padding: 0 0 0 50px;
+    text-align: center;
+    font-weight: bold;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    font-size: 1.3em;
+}
+.inst_title{
+    padding: 10px 5px 10px 0;
+    font-size: 12px;
+}
+.inst_title>ul{
+	margin-left: 20px;
+	margin-bottom: 5px;
+}
+.inst_title>ul>li{
+	line-height: 15px;
+	padding-bottom: 5px;
+}
+
+
+.instructorButton > a{
+	display: block;
+	width: 200px;
+	height: 50px;
+	margin: 0 auto;
+    font-family: "Roboto", Sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 4px;
+    border: solid 3px #111;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+	color: #111;
+	transition: 0.3s;
+}
+.instructorButton > a:hover{
+    border: solid 3px #111;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+	color: #fff;
+	background: #111;
+}
+
+
+

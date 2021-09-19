@@ -37,7 +37,7 @@
                                 <th></th>
                                 <th></th>
                                 <th></th>
-                                <th><a href="./admin.php?page=list_of_teacher&ID=<?= $instructor->id ?>" >編集</a></th>
+                                <th><a href="./admin.php?page=edit_teacher_page&ID=<?= $instructor->id ?>" >編集</a></th>
                                 <th></th>
                             </tr>
                         <?php

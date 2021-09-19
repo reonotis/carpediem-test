@@ -3,8 +3,11 @@
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles' );
 function theme_enqueue_styles() {
     wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
+    wp_enqueue_script(
+        'main-script',
+        get_template_directory_uri() . '-child/js/jquery.waypoints.min.js'
+    );
 }
-
 
 
 
@@ -128,14 +131,100 @@ add_shortcode('show_schedule_Table', 'show_scheduleTable');
 
 
 /**
- * オリジナルのCSS
+ *
+ */
+
+function get_instructors_list(){
+
+	global $wpdb;
+
+	$query="SELECT *
+            FROM instructors
+            WHERE del_flg = 0
+            ORDER BY rank asc
+            ";
+	$results = $wpdb->get_results($query);
+	return $results;
+}
+
+/**
+ *
+ */
+function get_instructor_awards($instructorIdList){
+	global $wpdb;
+	$query="SELECT *
+            FROM instructor_awards
+            WHERE instructor_id IN ($instructorIdList)
+            AND del_flg = 0
+            ORDER BY rank ASC
+            ";
+	$results = $wpdb->get_results($query);
+	return $results;
+}
+
+/**
  *
  * @return void
  */
-function my_admin_style(){
-    wp_enqueue_style( 'my_admin_style', get_stylesheet_directory_uri().'/my_admin_style.css' );
+function show_instructorsList($atts) {
+    // $atts = shortcode_atts(array(
+    //     "membership_type" => NULL,
+    // ),$atts);
+    // $membership_type = $atts['membership_type'];
+    $instructorsList = get_instructors_list();
+    $instructorIdList = array_column($instructorsList, 'id');
+    $instructorIdList = implode(',', $instructorIdList);
+
+    $instructorAwardsList = get_instructor_awards($instructorIdList);
+    if(is_null($instructorsList)){
+        return '表示できるインストラクターはいません';
+    }else{
+        $HTML = '<div class="instructorsSection" >';
+            $HTML .= '<div class="instructorsArea" >';
+                foreach($instructorsList as $instructor ){
+                        $HTML .= '<div class="instructorBox" >';
+                            $HTML .= '<div class="instr_img" >';
+                                $HTML .= '<img src="' . $instructor->img_pass . '" >';
+                            $HTML .= '</div>';
+                            $HTML .= '<div class="instr_level" >' . $instructor->instructor_level . '</div>';
+                            $HTML .= '<div class="instr_level_support" ></div>';
+                            $HTML .= '<div class="instr_content" >';
+                                $HTML .= '<div class="instr_name" >' . $instructor->instructor_name . '</div>';
+                                $HTML .= '<div class="inst_title" >' ;
+                                    $HTML .= '<ul>' ;
+                                        foreach($instructorAwardsList as $instructorAward){
+                                            if($instructorAward->instructor_id == $instructor->id ){
+                                                $HTML .= '<li>' . $instructorAward->award . '</li>' ;
+                                            }
+                                        }
+                                    $HTML .= '</ul>';
+                                $HTML .= '</div>';
+                                $HTML .= '<div class="instructorButton" ><a href="./instructor?id=' . $instructor->id . '" >詳細を見る</a></div>';
+                            $HTML .= '</div>';
+                        $HTML .= '</div>';
+                }
+            $HTML .= '</div>';
+        $HTML .= '</div>';
+    }
+
+    return $HTML;
+    return var_dump($instructorsList);
 }
-add_action( 'admin_enqueue_scripts', 'my_admin_style' );
+add_shortcode('show_instructors_list', 'show_instructorsList');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
