@@ -8,9 +8,6 @@ class Instructor {
 	private $comment_Limit = 3;
 
 	public function register( ) {
-
-
-
 		try {
 			$instructor_name  = $_POST['instructor_name'] ;
 			$instructor_name_en = $_POST['instructor_name_en'] ;
@@ -90,6 +87,7 @@ class Instructor {
 
 	public function update() {
 		try {
+			var_dump($_POST);exit;
 			$ID          = $_POST['ID'] ;
 			$f_name      = $_POST['f_name'] ;
 			$l_name      = $_POST['l_name'] ;
@@ -115,13 +113,13 @@ class Instructor {
 
 			// エラーチェックを行う
 			$err_lists = [];
-      if( !$f_name ) array_push($err_lists,'苗字が入力されていません');
-			if( !$l_name ) array_push($err_lists,'名前が入力されていません');
-			// if( !$email )  array_push($err_lists,'メールアドレスが入力されていません');
-      // if( !$f_read ) array_push($err_lists,'ミョウジが入力されていません');
-      // if( !$l_read ) array_push($err_lists,'ナマエが入力されていません');
-      if( !$sex ) array_push($err_lists,'性別が選択されていません');
-      if( $posted == null ) array_push($err_lists,'掲載状態が選択されていません');
+			if( !$f_name ) array_push($err_lists,'苗字が入力されていません');
+					if( !$l_name ) array_push($err_lists,'名前が入力されていません');
+					// if( !$email )  array_push($err_lists,'メールアドレスが入力されていません');
+			// if( !$f_read ) array_push($err_lists,'ミョウジが入力されていません');
+			// if( !$l_read ) array_push($err_lists,'ナマエが入力されていません');
+			if( !$sex ) array_push($err_lists,'性別が選択されていません');
+			if( $posted == null ) array_push($err_lists,'掲載状態が選択されていません');
 			if( $commentCount > $this->comment_Limit ) array_push($err_lists,'コメントの文字数は'. $this->comment_Limit. '文字以内で記入してください');
 
 			// array_push($err_lists,'強制終了します');
@@ -130,9 +128,8 @@ class Instructor {
 			global $wpdb;
 
 
-			$wpdb->update(
-				'my_instructor',
-        array(
+			$wpdb->update('my_instructor',
+				array(
 					'f_name' => $f_name,
 					'l_name' => $l_name,
 					'f_read' => $f_read,
@@ -141,8 +138,7 @@ class Instructor {
 					'email'  => $email,
 					'posted' => $posted
 				),
-				// where句
-				array( 'ID' =>  $ID ),
+				array( 'ID' =>  $ID ),// where句
 			);
 
 			//
@@ -225,7 +221,7 @@ class Instructor {
 
 $instructor = new Instructor();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') { //POSTが渡されたら
-	// if($_POST['update'] )$instructor -> update();
+	if($_POST['update'] )$instructor -> update();
 	if($_POST['register'] )$instructor -> register();
 	// if($_POST['delete'] )$instructor -> delete();
 }
