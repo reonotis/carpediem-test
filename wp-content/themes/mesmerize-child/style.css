@@ -445,23 +445,25 @@ ul.dropdown-menu > li.hover > a {
 	height: 50px;
     padding: 0 0 0 50px;
     text-align: center;
-    font-weight: bold;
-    justify-content: center;
-    display: flex;
-    align-items: center;
     font-size: 1.3em;
+    font-weight: bold;
+	color: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .inst_title{
     padding: 10px 5px 10px 0;
     font-size: 12px;
 }
 .inst_title>ul{
-	margin-left: 20px;
+	margin-left: 25px;
 	margin-bottom: 5px;
 }
 .inst_title>ul>li{
 	line-height: 15px;
 	padding-bottom: 5px;
+	color: #555;
 }
 
 
