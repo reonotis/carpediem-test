@@ -212,12 +212,39 @@ function show_instructorsList($atts) {
 }
 add_shortcode('show_instructors_list', 'show_instructorsList');
 
+/**
+ * 最新のお知らせを表示
+ *
+ * @return void
+ */
+function func_showNewNotice(){
+	$arg   = array(
+		// 'posts_per_page' => 5, // 表示する件数
+		'orderby'        => 'date', // 日付でソート
+		'order'          => 'DESC', // DESCで最新から表示、ASCで最古から表示
+	);
+	$custom_posts = new WP_Query($arg);
+	// var_dump($custom_posts);exit;
+	$format = 'Y/m/d';
 
-
-
-
-
-
+	$HTML = '';
+	$HTML .= '<table class="noticeTable" >';
+		$HTML .= '<tbody>';
+			while ( $custom_posts->have_posts() ) : $custom_posts->the_post();
+				$HTML .= '<tr style="border-bottom: solid 2px #ff4500;">';
+					$HTML .= '<td>'. get_the_time($format) . '</td>';
+					$HTML .= '<td>' ;
+						$HTML .= '<a href="' . get_the_permalink() . '">';
+							$HTML .= get_the_title() ;
+						$HTML .= '</a>';
+					$HTML .= '</td>';
+				$HTML .= '</tr>';
+			endwhile;
+		$HTML .= '</tbody>';
+	$HTML .= '</table>';
+	return $HTML;
+}
+add_shortcode('show_new_notice', 'func_showNewNotice');
 
 
 
