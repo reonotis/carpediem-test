@@ -184,9 +184,9 @@ function mesmerize_header_main_class() {
 
 	$transparent_nav = get_theme_mod( $prefix . '_nav_transparent',
 		mesmerize_mod_default( "{$prefix}_nav_transparent" ) );
-	
+
 	$use_front_page_style = get_theme_mod($prefix . '_nav_use_front_page', false);
-	
+
 	if ( ! $transparent_nav && ! $use_front_page_style) {
 		$classes[] = "coloured-nav";
 	}
@@ -321,7 +321,6 @@ function mesmerize_print_hero( $inner = false ) {
 
 function mesmerize_get_footer_content( $footer = null ) {
 	$template = apply_filters( 'mesmerize_footer', null );
-
 
 	if ( ! $template ) {
 		$template = $footer;

@@ -68,3 +68,57 @@ function get_instructors(){
 
 
 
+
+/**
+ *
+ * @return void
+ */
+function func_show_instructor($atts) {
+    $atts = shortcode_atts(array(
+        "id" => 1,
+    ),$atts);
+    $id = 1;
+
+    if($_GET['id']){
+        $id = $_GET['id'];
+    }
+
+	global $wpdb;
+	$query="SELECT *
+            FROM instructors
+            WHERE id = $id
+            AND del_flg = 0
+            ";
+	$results = $wpdb->get_row($query);
+
+
+    if(is_null($results)){
+        return '表示できるインストラクターはいません';
+    }else{
+        $HTML = '<div class="instructorSection" >';
+            $HTML = '<div class="instructorArea" >';
+                $HTML .= '<div class="instructorImg" >';
+                    $HTML .= '<img src="' . $results->img_pass . '">';
+                $HTML .= '</div>';
+                $HTML .= '<div class="instructorContents" >';
+                    $HTML .= '<div class="" >' . $results->instructor_name . '</div>';
+                    $HTML .= '<div class="" >' . $results->instructor_level . '</div>';
+                    $HTML .= '<div class="" >' . nl2br($results->introduction) . '</div>';
+                    if(!empty($results->faceBook_url)){
+                        $HTML .= '<div class="" >' . $results->faceBook_url . '</div>';
+                    }
+                    if(!empty($results->instagram_url)){
+                        $HTML .= '<div class="" >' . $results->instagram_url . '</div>';
+                    }
+                    if(!empty($results->twitter_url)){
+                        $HTML .= '<div class="" >' . $results->twitter_url . '</div>';
+                    }
+                    $HTML .= '<div class="" >' . $results->email . '</div>';
+                $HTML .= '</div>';
+            $HTML .= '</div>';
+        $HTML .= '</div>';
+    }
+
+    return $HTML;
+}
+add_shortcode('show_instructor', 'func_show_instructor');
