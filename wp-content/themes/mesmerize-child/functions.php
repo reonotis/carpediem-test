@@ -245,11 +245,14 @@ add_shortcode('show_new_notice', 'func_showNewNotice');
 
 
 
-
-
-
-
-
-
-
-
+function get_footer_text(){
+	$copyrightText = __( 'Built using WordPress and the <a rel="nofollow" target="_blank" href="%1$s" class="mesmerize-theme-link">Mesmerize Theme</a>', 'mesmerize' );
+	$copyrightText = sprintf( $copyrightText, 'https://extendthemes.com/go/built-with-mesmerize/' );
+	$previewAtts = "";
+	if ( mesmerize_is_customize_preview() ) {
+		$previewAtts = 'data-footer-copyright="true"';
+	}
+	$copyright = '<p ' . $previewAtts . ' class="copyright">&copy;&nbsp;' . "&nbsp;" . date_i18n( __( 'Y',
+			'mesmerize' ) ) . '&nbsp;' . esc_html( get_bloginfo( 'name' ) ) . '</p>';
+	return apply_filters( 'mesmerize_get_footer_copyright', $copyright, $previewAtts );
+}
