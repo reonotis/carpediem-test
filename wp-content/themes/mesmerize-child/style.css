@@ -54,6 +54,29 @@ ul.dropdown-menu > li.hover > a {
 
 
 
+/* お知らせ */
+ul.newNotice {
+	padding: 0;
+	margin: 0;
+	position: relative;
+	counter-reset:li;
+}
+ul.newNotice li {
+	line-height: 1.5;
+	margin-bottom: 5px;
+	padding: 13px 13px 13px 40px;
+	list-style-type: none!important;
+	color: #111;
+	border-bottom: solid 1px #111;
+	transition: 1s;
+	transition-duration: 0.3s;
+}
+ul.newNotice li:hover{
+	color: #fff;
+	background: #111;
+	padding-left: 60px;
+}
+
 
 
 

@@ -227,9 +227,11 @@ function func_showNewNotice(){
         $HTML = '';
         $HTML .= '<ul class="newNotice" >';
             foreach( $information as $post ):
-                $HTML .= '<li>';
-                    $HTML .= date('Y年m月d日 ', strtotime($post->post_date) ) . '      ' . '<a href="' . $post->guid . '">'. $post->post_title . '</a>';
-                $HTML .= '</li>';
+                $HTML .= '<a href="' . $post->guid . '">';
+                    $HTML .= '<li>';
+                        $HTML .= date('Y年m月d日 ', strtotime($post->post_date) ) . '　>　' . $post->post_title ;
+                    $HTML .= '</li>';
+                $HTML .= '</a>';
             endforeach;
 
         $HTML .= '</ul>';
