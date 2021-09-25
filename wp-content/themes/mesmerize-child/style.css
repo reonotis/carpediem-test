@@ -538,5 +538,59 @@ ul.newNotice li:hover{
 }
 .instructorContents{
 	width: calc(100% - 300px);
-
 }
+
+
+
+
+/* Q & A */
+.qa_title {
+	margin-bottom: 0 !important;
+    font-size: 1.1em;
+    font-weight: 600;
+	padding: 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.2s;
+	position: relative;
+	border: solid 2px #111;
+}
+.qa_content{
+	padding: 20px;
+	font-size: 1.1em;
+    font-weight: 600;
+	border: solid 2px #111;
+	border-top: none;
+    display: flex;
+    cursor: pointer;
+    transition: 0.2s;
+	position: relative;
+}
+.qa_title:before,
+.qa_content:before{
+    position: relative;
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    margin: 0 10px;
+	border: solid 2px #111;
+    float: left;
+    border-radius: 20px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+.qa_title:before {
+    content: "Q";
+    background: #111;
+    color: #fff;
+}
+.qa_content:before {
+    content: "A";
+    background: #fff;
+    color: #111;
+}
+
+
+

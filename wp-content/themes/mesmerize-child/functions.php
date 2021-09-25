@@ -4,6 +4,14 @@ add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles' );
 function theme_enqueue_styles() {
     wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
     wp_enqueue_script(
+        'jquery',
+        'https://code.jquery.com/jquery-2.2.4.min.js'
+    );
+    wp_enqueue_script(
+        'q_and_a-script',
+        get_stylesheet_directory_uri() . '/js/mesmerize-child.js'
+    );
+    wp_enqueue_script(
         'main-script',
         get_template_directory_uri() . '-child/js/jquery.waypoints.min.js'
     );
