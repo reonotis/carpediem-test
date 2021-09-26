@@ -613,3 +613,29 @@ ul.newNotice li:hover{
 }
 
 
+.member_info_table{
+    table-layout: fixed;
+	border-collapse: collapse;
+    border-spacing: 0;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+}
+
+.member_info_table th{
+    background: #111;
+	color: #fff;
+    border: 1px solid #cfcfcf;
+}
+.member_info_table td{
+    border: 1px solid #cfcfcf;
+	color: #333;
+}
+.member_info_table th:first-child,
+.member_info_table td:first-child {
+    padding-left: 16px;
+}
+.member_info_table th:last-child,
+.member_info_table td:last-child {
+    padding-right: 16px;
+}
+
