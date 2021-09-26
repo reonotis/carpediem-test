@@ -251,8 +251,66 @@ function func_showNewNotice(){
 }
 add_shortcode('show_new_notice', 'func_showNewNotice');
 
+/**
+ * 会員別インフォメーションを表示する
+ * @return void
+ */
+function func_showMemberInfoTable($atts){
+    $atts = shortcode_atts(array(
+        "type_id" => 1,
+    ),$atts);
+    $type_id = $atts['type_id'];
+
+	global $wpdb;
+	$query="SELECT *
+            FROM membership_type
+            WHERE id = $type_id
+            AND del_flg = 0
+            ";
+	$membership_type = $wpdb->get_row($query);
+    if(!$membership_type) return false;
+
+	$query="SELECT courses.course_name
+            FROM membership_type_courses_mapping
+            INNER JOIN courses ON courses.id = membership_type_courses_mapping.course_id
+            WHERE membership_type_id = $type_id
+            AND del_flg = 0
+            AND display_flg = 1
+            ";
+	$results = $wpdb->get_results($query);
+    if(!$results) return false;
+
+    $html = "";
+    $html .= '
+    <table class="member_info_table" >
+        <tr>
+            <th>対象</th>
+            <th>入会金</th>
+            <th>月会費</th>
+            <th>参加可能コース</th>
+        </tr>
+        <tr>
+            <td>'. nl2br($membership_type->target_person) .'</td>
+            <td>11,000円</td>
+            <td>'. number_format($membership_type->monthly_fee) .'円</td>
+            <td>';
+                foreach($results as $data){
+                    $html .= $data->course_name. '<br>' ;
+                }
+            $html .= '</td>
+        </tr>
+    </table>';
+    return $html;
+}
+add_shortcode('show_member_info_table', 'func_showMemberInfoTable');
 
 
+
+
+
+
+
+// フッターの内容を修正
 function get_footer_text(){
 	$copyrightText = __( 'Built using WordPress and the <a rel="nofollow" target="_blank" href="%1$s" class="mesmerize-theme-link">Mesmerize Theme</a>', 'mesmerize' );
 	$copyrightText = sprintf( $copyrightText, 'https://extendthemes.com/go/built-with-mesmerize/' );
