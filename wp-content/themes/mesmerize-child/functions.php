@@ -191,26 +191,26 @@ function show_instructorsList($atts) {
         $HTML = '<div class="instructorsSection" >';
             $HTML .= '<div class="instructorsArea" >';
                 foreach($instructorsList as $instructor ){
-                        $HTML .= '<div class="instructorBox" >';
-                            $HTML .= '<div class="instr_img" >';
-                                $HTML .= '<img src="' . $instructor->img_pass . '" >';
-                            $HTML .= '</div>';
-                            $HTML .= '<div class="instr_level ' . $instructor->band_colour . '" >' . $instructor->instructor_level . '</div>';
-                            $HTML .= '<div class="instr_level_support" ></div>';
-                            $HTML .= '<div class="instr_content" >';
-                                $HTML .= '<div class="instr_name" >' . $instructor->instructor_name . '</div>';
-                                $HTML .= '<div class="inst_title" >' ;
-                                    $HTML .= '<ul>' ;
-                                        foreach($instructorAwardsList as $instructorAward){
-                                            if($instructorAward->instructor_id == $instructor->id ){
-                                                $HTML .= '<li>' . $instructorAward->award . '</li>' ;
-                                            }
-                                        }
-                                    $HTML .= '</ul>';
-                                $HTML .= '</div>';
-                                $HTML .= '<div class="instructorButton" ><a href="./instructor?id=' . $instructor->id . '" >詳細を見る</a></div>';
-                            $HTML .= '</div>';
+                    $HTML .= '<div class="instructorBox" >';
+                        $HTML .= '<div class="instr_img" >';
+                            $HTML .= '<img src="' . $instructor->img_pass . '" >';
                         $HTML .= '</div>';
+                        $HTML .= '<div class="instr_level ' . $instructor->band_colour . '" >' . $instructor->instructor_level . '</div>';
+                        $HTML .= '<div class="instr_level_support" ><div class="instr_level_support_knot" ></div></div>';
+                        $HTML .= '<div class="instr_content" >';
+                            $HTML .= '<div class="instr_name" >' . $instructor->instructor_name . '</div>';
+                            $HTML .= '<div class="inst_title" >' ;
+                                $HTML .= '<ul>' ;
+                                    foreach($instructorAwardsList as $instructorAward){
+                                        if($instructorAward->instructor_id == $instructor->id ){
+                                            $HTML .= '<li>' . $instructorAward->award . '</li>' ;
+                                        }
+                                    }
+                                $HTML .= '</ul>';
+                            $HTML .= '</div>';
+                            $HTML .= '<div class="instructorButton" ><a href="./instructor?id=' . $instructor->id . '" >詳細を見る</a></div>';
+                        $HTML .= '</div>';
+                    $HTML .= '</div>';
                 }
             $HTML .= '</div>';
         $HTML .= '</div>';
@@ -297,6 +297,9 @@ function func_showMemberInfoTable($atts){
             <td>';
                 foreach($results as $data){
                     $html .= $data->course_name. '<br>' ;
+                }
+                if($type_id == 6){
+                    $html .= '※'.$membership_type->member_type_name.'で登録された女性の方は、別途女性専用コースも受講する事が可能です。';
                 }
             $html .= '</td>
         </tr>

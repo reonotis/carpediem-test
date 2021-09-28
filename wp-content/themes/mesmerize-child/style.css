@@ -424,8 +424,8 @@ ul.newNotice li:hover{
 	position: absolute;
 	width: 28px;
 	height: 80px;
-	border-radius: 3px;
 	background: #111;
+	border-radius: 3px;
 	top: 5px;
 	left: 0;
 }
@@ -481,6 +481,16 @@ ul.newNotice li:hover{
     right: 0;
     border-top: solid 12px transparent;
     border-left: solid 25px #959e9b;
+}
+.instr_level_support_knot{
+    content: '';
+    position: absolute;
+	width: 47px;
+	height: 38px;
+    top: -40px;
+	left: 22px;
+    border: solid 1px #ffffff25;
+	border-radius: 3px;
 }
 .instr_content{
 	width: 350px;
