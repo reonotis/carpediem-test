@@ -437,6 +437,31 @@ ul.newNotice li:hover{
 	transform: rotate(-20deg);
 	left: 40px;
 }
+
+.instr_level.brown{
+	background: #85382a;
+}
+.instr_level.brown::before,
+.instr_level.brown::after{
+	background: #85382a;
+}
+
+.instr_level.purple{
+	background: purple;
+}
+.instr_level.purple::before,
+.instr_level.purple::after{
+	background: purple;
+}
+.instr_level.blue{
+	background: #232394;
+}
+.instr_level.blue::before,
+.instr_level.blue::after{
+	background: #232394;
+}
+
+
 .instr_level_support{
 	position: relative;
 }
@@ -628,7 +653,8 @@ ul.newNotice li:hover{
 }
 .member_info_table td{
     border: 1px solid #cfcfcf;
-	color: #333;
+	color: #111;
+    vertical-align: middle;
 }
 .member_info_table th:first-child,
 .member_info_table td:first-child {

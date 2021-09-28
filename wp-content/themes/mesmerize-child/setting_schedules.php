@@ -173,7 +173,8 @@ function get_displayPossible_schedules($course_Ids){
             schedules.*,
             courses.course_name,
             courses.background,
-            courses.border
+            courses.border,
+            courses.youtube_url
             FROM schedules
             INNER JOIN courses ON courses.id = schedules.course_id
             WHERE schedules.course_id IN ($course_Ids)
@@ -231,6 +232,9 @@ function make_schedules_html($schedules){
                             $html .= "'>";
                                 foreach ($schedules as $value) {
                                     if(  $value->display_flg == 1 && $value->week == $YOUBI && date('H:i' , strtotime( $value->time)) == date('H:i' , $time)){
+                                        if($value->youtube_url){
+                                            $html .= '<a href="' . $value->youtube_url . '" data-lity="data-lity" >' ;
+                                        }
                                         $html .= "<div class='KOUSU time".$value->section ."'  style='background:#" .$value->background. ";border:solid 1px #" .$value->border. ";'  >" ;
                                             $html .= "<div class='lessonTitle'>" ;
                                                 if($value->section >= 2){
@@ -243,6 +247,9 @@ function make_schedules_html($schedules){
                                                 $html .= "</div>" ;
                                             $html .= "</div>" ;
                                         $html .= "</div>";
+                                        if($value->youtube_url){
+                                            $html .= '</a>' ;
+                                        }
                                     }
                                 }
                             $html .= "</div>";

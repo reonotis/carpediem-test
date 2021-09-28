@@ -3,6 +3,7 @@
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles' );
 function theme_enqueue_styles() {
     wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
+    wp_enqueue_style( 'modal-video', 'https://cdnjs.cloudflare.com/ajax/libs/lity/2.3.1/lity.css' );
     wp_enqueue_script(
         'jquery',
         'https://code.jquery.com/jquery-2.2.4.min.js'
@@ -15,11 +16,11 @@ function theme_enqueue_styles() {
         'main-script',
         get_template_directory_uri() . '-child/js/jquery.waypoints.min.js'
     );
+    wp_enqueue_script(
+        'jquery-modal-video.min',
+        'https://cdnjs.cloudflare.com/ajax/libs/lity/2.3.1/lity.js'
+    );
 }
-
-
-
-
 
 
 
@@ -194,7 +195,7 @@ function show_instructorsList($atts) {
                             $HTML .= '<div class="instr_img" >';
                                 $HTML .= '<img src="' . $instructor->img_pass . '" >';
                             $HTML .= '</div>';
-                            $HTML .= '<div class="instr_level" >' . $instructor->instructor_level . '</div>';
+                            $HTML .= '<div class="instr_level ' . $instructor->band_colour . '" >' . $instructor->instructor_level . '</div>';
                             $HTML .= '<div class="instr_level_support" ></div>';
                             $HTML .= '<div class="instr_content" >';
                                 $HTML .= '<div class="instr_name" >' . $instructor->instructor_name . '</div>';
