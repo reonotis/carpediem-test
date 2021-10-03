@@ -90,7 +90,15 @@ function func_show_instructor($atts) {
             AND del_flg = 0
             ";
 	$results = $wpdb->get_row($query);
+	$query="SELECT *
+            FROM instructor_awards
+            WHERE instructor_id = $id
+            AND del_flg = 0
+            ORDER BY rank ASC
+            ";
+	$titleList = $wpdb->get_results($query);
 
+    $gallery = NULL;
 
     if(is_null($results)){
         return '表示できるインストラクターはいません';
@@ -101,20 +109,46 @@ function func_show_instructor($atts) {
                     $HTML .= '<img src="' . $results->img_pass . '">';
                 $HTML .= '</div>';
                 $HTML .= '<div class="instructorContents" >';
-                    $HTML .= '<div class="" >' . $results->instructor_name . '</div>';
-                    $HTML .= '<div class="" >' . $results->instructor_level . '</div>';
-                    $HTML .= '<div class="" >' . nl2br($results->introduction) . '</div>';
-                    if(!empty($results->faceBook_url)){
-                        $HTML .= '<div class="" >' . $results->faceBook_url . '</div>';
-                    }
-                    if(!empty($results->instagram_url)){
-                        $HTML .= '<div class="" >' . $results->instagram_url . '</div>';
-                    }
-                    if(!empty($results->twitter_url)){
-                        $HTML .= '<div class="" >' . $results->twitter_url . '</div>';
-                    }
-                    $HTML .= '<div class="" >' . $results->email . '</div>';
+                    $HTML .= '<div class="instructorName" >' . $results->instructor_name . '</div>';
+                    $HTML .= '<div class="instructorLevel" >' . $results->instructor_level . '</div>';
+                    $HTML .= '<div class="introduction" >' . nl2br($results->introduction) . '</div>';
                 $HTML .= '</div>';
+                if(!empty($results->faceBook_url) || !empty($results->instagram_url) || !empty($results->twitter_url) ){
+                    $HTML .= '<div class="snsList" >';
+                        if(!empty($results->faceBook_url)){
+                            $HTML .= '<a href="' . $results->faceBook_url . '"><div class="" ><img src="' . get_stylesheet_directory_uri() . '/img/FB_logo.png" ></div></a>';
+                        }
+                        if(!empty($results->instagram_url)){
+                            $HTML .= '<a href="' . $results->instagram_url . '"><div class="" ><img src="' . get_stylesheet_directory_uri() . '/img/instrgram-150x150.png" ></div></a>';
+                        }
+                        if(!empty($results->twitter_url)){
+                            $HTML .= '<a href="' . $results->instagram_url . '"><div class="" ><img src="' . get_stylesheet_directory_uri() . '/img/Twitter_Icon-150x150.png" ></div></a>';
+                        }
+                    $HTML .= '</div>';
+                }
+                if($titleList){
+                    $HTML .= '<div class="instructorTitleErea" >';
+                        $HTML .= '<div class="instructorTitleWrapper" >タイトル</div>';
+                        $HTML .= '<ul class="instructorTitleList">';
+                            foreach($titleList as $title){
+                                $HTML .= '<li>'.$title->award.'</li>';
+                            }
+                        $HTML .= '</ul>';
+                    $HTML .= '</div>';
+                }
+                if($results->lesson_fee){
+                    $HTML .= '<div class="instructorLessonFeeErea" >';
+                            $HTML .= '<div class="instructorLessonFeeWrapper" >プライベートレッスン</div>';
+                            $HTML .= '<div class="" >1回 : '.number_format($results->lesson_fee).'円</div>';
+                            $HTML .= '<div class="" >4回 : '.number_format($results->lesson_fee_4time).'円</div>';
+                    $HTML .= '</div>';
+                }
+                if($gallery){
+                    $HTML .= '<div class="instructorGallery" >';
+                            $HTML .= '<div class="" >ギャラリー</div>';
+                    $HTML .= '</div>';
+                }
+                // $HTML .= '<div class="" >' . $results->email . '</div>';
             $HTML .= '</div>';
         $HTML .= '</div>';
     }

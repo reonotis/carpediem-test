@@ -299,7 +299,7 @@ function func_showMemberInfoTable($atts){
                     $html .= $data->course_name. '<br>' ;
                 }
                 if($type_id == 6){
-                    $html .= '※'.$membership_type->member_type_name.'で登録された女性の方は、別途女性専用コースも受講する事が可能です。';
+                    $html .= '※'.$membership_type->member_type_name.'で登録された女性の方は別途、Women’s only class も受講する事が可能です。';
                 }
             $html .= '</td>
         </tr>
