@@ -572,6 +572,12 @@ ul.newNotice li:hover{
 	width: 300px;
 	height: 400px;
 }
+.instructorImg>img{
+	width: 300px;
+	height: 400px;
+	object-fit: cover;
+}
+
 .instructorContents{
 	width: calc(100% - 300px);
 	padding: 20px;
