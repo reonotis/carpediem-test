@@ -116,13 +116,13 @@ function func_show_instructor($atts) {
                 if(!empty($results->faceBook_url) || !empty($results->instagram_url) || !empty($results->twitter_url) ){
                     $HTML .= '<div class="snsList" >';
                         if(!empty($results->faceBook_url)){
-                            $HTML .= '<a href="' . $results->faceBook_url . '"><div class="" ><img src="' . get_stylesheet_directory_uri() . '/img/FB_logo.png" ></div></a>';
+                            $HTML .= '<a href="' . $results->faceBook_url . '" target="_blank" ><div class="" ><img src="' . get_stylesheet_directory_uri() . '/img/FB_logo.png" ></div></a>';
                         }
                         if(!empty($results->instagram_url)){
-                            $HTML .= '<a href="' . $results->instagram_url . '"><div class="" ><img src="' . get_stylesheet_directory_uri() . '/img/instrgram-150x150.png" ></div></a>';
+                            $HTML .= '<a href="' . $results->instagram_url . '" target="_blank" ><div class="" ><img src="' . get_stylesheet_directory_uri() . '/img/instrgram-150x150.png" ></div></a>';
                         }
                         if(!empty($results->twitter_url)){
-                            $HTML .= '<a href="' . $results->instagram_url . '"><div class="" ><img src="' . get_stylesheet_directory_uri() . '/img/Twitter_Icon-150x150.png" ></div></a>';
+                            $HTML .= '<a href="' . $results->instagram_url . '" target="_blank" ><div class="" ><img src="' . get_stylesheet_directory_uri() . '/img/Twitter_Icon-150x150.png" ></div></a>';
                         }
                     $HTML .= '</div>';
                 }
