@@ -722,7 +722,7 @@ ul.instructorTitleList>li{
 }
 
 
-.member_info_table{
+.member_info_table1{
     table-layout: fixed;
 	border-collapse: collapse;
     border-spacing: 0;
@@ -730,22 +730,50 @@ ul.instructorTitleList>li{
     -webkit-border-vertical-spacing: 0px;
 }
 
-.member_info_table th{
+.member_info_table1 th{
     background: #111;
 	color: #fff;
     border: 1px solid #cfcfcf;
 }
-.member_info_table td{
+.member_info_table1 td{
     border: 1px solid #cfcfcf;
 	color: #111;
     vertical-align: middle;
 }
-.member_info_table th:first-child,
-.member_info_table td:first-child {
+.member_info_table1 th:first-child,
+.member_info_table1 td:first-child {
     padding-left: 16px;
 }
-.member_info_table th:last-child,
-.member_info_table td:last-child {
+.member_info_table1 th:last-child,
+.member_info_table1 td:last-child {
+    padding-right: 16px;
+}
+
+
+.member_info_table2{
+	border-collapse: collapse;
+    border-spacing: 0;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+}
+.member_info_table2 th{
+    background: #111;
+	color: #fff;
+    border: 1px solid #cfcfcf;
+	vertical-align: middle;
+	text-align: center;
+}
+.member_info_table2 td{
+    border: 1px solid #cfcfcf;
+	color: #111;
+    vertical-align: middle;
+}
+.member_info_table2 th:first-child,
+.member_info_table2 td:first-child {
+    padding-left: 16px;
+}
+.member_info_table2 th:last-child,
+.member_info_table2 td:last-child {
     padding-right: 16px;
 }
 
