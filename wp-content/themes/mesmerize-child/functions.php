@@ -259,8 +259,10 @@ add_shortcode('show_new_notice', 'func_showNewNotice');
 function func_showMemberInfoTable($atts){
     $atts = shortcode_atts(array(
         "type_id" => 1,
+        "pattern" => 1,
     ),$atts);
     $type_id = $atts['type_id'];
+    $pattern = $atts['pattern'];
 
 	global $wpdb;
 	$query="SELECT *
@@ -281,9 +283,19 @@ function func_showMemberInfoTable($atts){
 	$results = $wpdb->get_results($query);
     if(!$results) return false;
 
+    if( $pattern == 1){
+        $html = member_info_table1($membership_type, $results, $type_id);
+    }else if( $pattern == 2){
+        $html = member_info_table2($membership_type);
+    }
+    return $html;
+}
+add_shortcode('show_member_info_table', 'func_showMemberInfoTable');
+
+function member_info_table1($membership_type, $results, $type_id){
     $html = "";
     $html .= '
-    <table class="member_info_table" >
+    <table class="member_info_table1" >
         <tr>
             <th>対象</th>
             <th>入会金</th>
@@ -306,9 +318,26 @@ function func_showMemberInfoTable($atts){
     </table>';
     return $html;
 }
-add_shortcode('show_member_info_table', 'func_showMemberInfoTable');
 
-
+function member_info_table2($membership_type){
+    $html = "";
+    $html .= '
+    <table class="member_info_table2" >
+        <tr>
+            <th>対象</th>
+            <td>'. nl2br($membership_type->target_person) .'</td>
+        </tr>
+        <tr>
+            <th>入会金</th>
+            <td>11,000円</td>
+        </tr>
+        <tr>
+            <th>月会費</th>
+            <td>'. number_format($membership_type->monthly_fee) .'円</td>
+        </tr>
+    </table>';
+    return $html;
+}
 
 
 
