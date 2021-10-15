@@ -333,7 +333,13 @@ function member_info_table2($membership_type){
         </tr>
         <tr>
             <th>月会費</th>
-            <td>'. number_format($membership_type->monthly_fee) .'円</td>
+            <td>';
+            if(is_numeric($membership_type->monthly_fee)){
+                $html .= number_format($membership_type->monthly_fee) .'円';
+            }else{
+                $html .= $membership_type->monthly_fee;
+            }
+            $html .= '</td>
         </tr>
     </table>';
     return $html;
