@@ -223,9 +223,14 @@ function show_instructorsList($atts) {
                             $HTML .= '<div class="instr_name" >' . $instructor->instructor_name . '</div>';
                             $HTML .= '<div class="inst_title" >' ;
                                 $HTML .= '<ul>' ;
+                                $count = 0;
                                     foreach($instructorAwardsList as $instructorAward){
                                         if($instructorAward->instructor_id == $instructor->id ){
                                             $HTML .= '<li>' . $instructorAward->award . '</li>' ;
+                                            $count++;
+                                            if($count==3){
+                                                break;
+                                            }
                                         }
                                     }
                                 $HTML .= '</ul>';
