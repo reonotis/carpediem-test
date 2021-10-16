@@ -51,7 +51,7 @@
         </table>
 
         <h1 class="wp-heading-inline">スケジュール表</h1>
-        <?php echo make_scheduleTable(); ?>
+        <!-- <?php echo make_scheduleTable(); ?> -->
 </div>
 
 

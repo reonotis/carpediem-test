@@ -85,99 +85,198 @@ class Instructor {
 		}
 	}
 
+	public function award_insert() {
+		try {
+			$ID    = $_POST['id'] ;
+			global $wpdb;
+			$wpdb->insert(
+					'instructor_awards',
+				array(
+					'instructor_id'    => $ID,
+				// ),array(
+				// 	'%s', //comment
+				)
+			);
+
+			add_settings_error( 'settings_errors', 'settings_errors', 'レコードを作成しました。修正してください', 'success' );
+			// add_settings_error()した内容を、DBに一時保存する
+			set_transient( 'settings_errors', get_settings_errors(), 30 );
+
+			$goback = add_query_arg( 'settings-updated', 'true', wp_get_referer() );
+			wp_redirect( $goback );
+		} catch (\Exception $e) {
+			$getMessage = $e->getMessage();
+
+			// If no settings errors were registered add a general 'updated' message.
+			add_settings_error( 'settings_errors', 'settings_errors', $getMessage, 'error' );
+
+			// add_settings_error()した内容を、DBに一時保存する
+			set_transient( 'settings_errors', get_settings_errors(), 30 );
+
+			// Redirect back to the settings page that was submitted.
+			$goback = add_query_arg( 'settings-updated', 'true', wp_get_referer() );
+			wp_redirect( $goback );
+			exit;
+		}
+	}
+
+	public function award_delete() {
+		try {
+
+			$ID    = $_POST['ID'] ;
+			global $wpdb;
+			$wpdb->update('instructor_awards',
+				array(
+					'del_flg' =>1,
+				),
+				array( 'id' =>  $ID ),// where句
+			);
+
+			add_settings_error( 'settings_errors', 'settings_errors', '削除しました', 'success' );
+			// add_settings_error()した内容を、DBに一時保存する
+			set_transient( 'settings_errors', get_settings_errors(), 30 );
+
+			$goback = add_query_arg( 'settings-updated', 'true', wp_get_referer() );
+			wp_redirect( $goback );
+			exit;
+		} catch (\Exception $e) {
+			$getMessage = $e->getMessage();
+
+			// If no settings errors were registered add a general 'updated' message.
+			add_settings_error( 'settings_errors', 'settings_errors', $getMessage, 'error' );
+
+			// add_settings_error()した内容を、DBに一時保存する
+			set_transient( 'settings_errors', get_settings_errors(), 30 );
+
+			// Redirect back to the settings page that was submitted.
+			$goback = add_query_arg( 'settings-updated', 'true', wp_get_referer() );
+			wp_redirect( $goback );
+			exit;
+		}
+	}
+
+	public function award_update() {
+		try {
+
+			$ID    = $_POST['ID'] ;
+			$rank  = $_POST['rank'] ;
+			$award = $_POST['award'] ;
+			$display_flg = $_POST['display_flg'] ;
+
+			global $wpdb;
+			$wpdb->update('instructor_awards',
+				array(
+					'award'       => $award,
+					'rank'        => $rank,
+					'display_flg' => $display_flg,
+				),
+				array( 'id' =>  $ID ),// where句
+			);
+
+			add_settings_error( 'settings_errors', 'settings_errors', '更新が完了しました。', 'success' );
+			// add_settings_error()した内容を、DBに一時保存する
+			set_transient( 'settings_errors', get_settings_errors(), 30 );
+
+			$goback = add_query_arg( 'settings-updated', 'true', wp_get_referer() );
+			wp_redirect( $goback );
+			exit;
+		} catch (\Exception $e) {
+			$getMessage = $e->getMessage();
+
+			// If no settings errors were registered add a general 'updated' message.
+			add_settings_error( 'settings_errors', 'settings_errors', $getMessage, 'error' );
+
+			// add_settings_error()した内容を、DBに一時保存する
+			set_transient( 'settings_errors', get_settings_errors(), 30 );
+
+			// Redirect back to the settings page that was submitted.
+			$goback = add_query_arg( 'settings-updated', 'true', wp_get_referer() );
+			wp_redirect( $goback );
+			exit;
+		}
+	}
+
 	public function update() {
 		try {
-			var_dump($_POST);exit;
-			$ID          = $_POST['ID'] ;
-			$f_name      = $_POST['f_name'] ;
-			$l_name      = $_POST['l_name'] ;
-			$f_read      = $_POST['f_read'] ;
-			$l_read      = $_POST['l_read'] ;
-			$sex         = $_POST['sex'] ;
-			$posted      = $_POST['posted'] ;
-			$intr_Career = $_POST['intr_Career'] ;
-			$intr_Comment    = $_POST['intr_Comment'] ;
-			$commentCount  = mb_strlen($intr_Comment );
-			$intr_img    = $_POST['intr_img'] ;
-			$intr_img_url_id = $_POST['intr_img_url_id'] ;
-
-			$email       = $_POST['email'] ;
-			$melmaga     = $_POST['melmaga'];
-			$fb          = $_POST['fb'];
-			$Twitter     = $_POST['Twitter'];
-			$Instagram   = $_POST['Instagram'];
-			$LINE        = $_POST['LINE'];
-			$Blog        = $_POST['Blog'];
-			$intr_HP     = $_POST['HP'];
-
+			// var_dump($_POST);exit;
+			$ID               = $_POST['ID'] ;
+			$instructor_name  = $_POST['instructor_name'] ;
+			$instructor_level = $_POST['instructor_level'] ;
+			$band_colour      = $_POST['band_colour'] ;
+			$email            = $_POST['email'] ;
+			$introduction     = $_POST['introduction'] ;
+			$faceBook_url     = $_POST['faceBook_url'];
+			$instagram_url    = $_POST['instagram_url'];
+			$twitter_url      = $_POST['twitter_url'];
+			$display_flg      = $_POST['display_flg'];
+			$lesson_fee       = $_POST['lesson_fee'];
+			$lesson_fee_4time = $_POST['lesson_fee_4time'];
 
 			// エラーチェックを行う
 			$err_lists = [];
-			if( !$f_name ) array_push($err_lists,'苗字が入力されていません');
-					if( !$l_name ) array_push($err_lists,'名前が入力されていません');
-					// if( !$email )  array_push($err_lists,'メールアドレスが入力されていません');
+			if( !$instructor_name ) array_push($err_lists,'インストラクター名が入力されていません');
+			// if( !$l_name ) array_push($err_lists,'名前が入力されていません');
+			// if( !$email )  array_push($err_lists,'メールアドレスが入力されていません');
 			// if( !$f_read ) array_push($err_lists,'ミョウジが入力されていません');
 			// if( !$l_read ) array_push($err_lists,'ナマエが入力されていません');
-			if( !$sex ) array_push($err_lists,'性別が選択されていません');
-			if( $posted == null ) array_push($err_lists,'掲載状態が選択されていません');
-			if( $commentCount > $this->comment_Limit ) array_push($err_lists,'コメントの文字数は'. $this->comment_Limit. '文字以内で記入してください');
+			// if( $commentCount > $this->comment_Limit ) array_push($err_lists,'コメントの文字数は'. $this->comment_Limit. '文字以内で記入してください');
 
 			// array_push($err_lists,'強制終了します');
 			if($err_lists) throw new \Exception();
 
 			global $wpdb;
-
-
-			$wpdb->update('my_instructor',
+			$wpdb->update('instructors',
 				array(
-					'f_name' => $f_name,
-					'l_name' => $l_name,
-					'f_read' => $f_read,
-					'l_read' => $l_read,
-					'sex'    => $sex,
+					'instructor_name' => $instructor_name,
+					'instructor_level' => $instructor_level,
+					'band_colour' => $band_colour,
+					'introduction' => $introduction,
+					'faceBook_url'    => $faceBook_url,
+					'instagram_url' => $instagram_url,
+					'twitter_url' => $twitter_url,
 					'email'  => $email,
-					'posted' => $posted
+					'lesson_fee'  => $lesson_fee,
+					'lesson_fee_4time'  => $lesson_fee_4time,
 				),
 				array( 'ID' =>  $ID ),// where句
 			);
 
 			//
-			$wpdb->update(
-				'my_intr_info',
-        array(
-					'intr_Img' => $intr_img_url_id,
-					'intr_Career'  => $intr_Career,
-					'intr_Comment' => $intr_Comment,
-					'intr_mailmaga'  => $melmaga,
-					'intr_FB'    => $fb,
-					'intr_Inst'  => $Instagram,
-					'intr_Twitter'  => $Twitter,
-					'intr_Line'  => $LINE,
-					'intr_Blog'  => $Blog,
-					'intr_HP'    => $intr_HP
-				),
-				// where句
-				array( 'intr_id' =>  $ID ),
-			);
+			// $wpdb->update('my_intr_info',
+			// 	array(
+			// 		'intr_Img' => $intr_img_url_id,
+			// 		'intr_Career'  => $intr_Career,
+			// 		'intr_Comment' => $intr_Comment,
+			// 		'intr_mailmaga'  => $melmaga,
+			// 		'intr_FB'    => $fb,
+			// 		'intr_Inst'  => $Instagram,
+			// 		'intr_Twitter'  => $Twitter,
+			// 		'intr_Line'  => $LINE,
+			// 		'intr_Blog'  => $Blog,
+			// 		'intr_HP'    => $intr_HP
+			// 	),
+			// 	// where句
+			// 	array( 'intr_id' =>  $ID ),
+			// );
 
-			wp_redirect( 'http://paralymbics.jp/wp-admin/admin.php?page=custom_instructor_page' );
-      exit;
+			wp_redirect( './admin.php?page=edit_teacher_page&ID='.$ID );
+			exit;
 
 		} catch (\Exception $e) {
 			$getMessage = $e->getMessage();
 
 			// If no settings errors were registered add a general 'updated' message.
 			foreach($err_lists as $err_list){
-        add_settings_error( 'settings_errors', 'settings_errors', $err_list, 'error' );
+				add_settings_error( 'settings_errors', 'settings_errors', $err_list, 'error' );
 			}
 
-      // add_settings_error()した内容を、DBに一時保存する
-      set_transient( 'settings_errors', get_settings_errors(), 30 );
+			// add_settings_error()した内容を、DBに一時保存する
+			set_transient( 'settings_errors', get_settings_errors(), 30 );
 
-      // Redirect back to the settings page that was submitted.
-      $goback = add_query_arg( 'settings-updated', 'true', wp_get_referer() );
-      wp_redirect( $goback );
-      exit;
+			// Redirect back to the settings page that was submitted.
+			$goback = add_query_arg( 'settings-updated', 'true', wp_get_referer() );
+			wp_redirect( $goback );
+			exit;
 		}
     }
 
@@ -222,6 +321,9 @@ class Instructor {
 $instructor = new Instructor();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') { //POSTが渡されたら
 	if($_POST['update'] )$instructor -> update();
+	if($_POST['award_insert'] )$instructor -> award_insert();
+	if($_POST['award_update'] )$instructor -> award_update();
+	if($_POST['award_delete'] )$instructor -> award_delete();
 	if($_POST['register'] )$instructor -> register();
 	// if($_POST['delete'] )$instructor -> delete();
 }

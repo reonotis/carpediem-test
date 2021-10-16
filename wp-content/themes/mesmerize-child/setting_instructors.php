@@ -60,15 +60,6 @@ function get_instructors(){
 	return $results;
 }
 
-
-
-
-
-
-
-
-
-
 /**
  *
  * @return void
@@ -90,13 +81,8 @@ function func_show_instructor($atts) {
             AND del_flg = 0
             ";
 	$results = $wpdb->get_row($query);
-	$query="SELECT *
-            FROM instructor_awards
-            WHERE instructor_id = $id
-            AND del_flg = 0
-            ORDER BY rank ASC
-            ";
-	$titleList = $wpdb->get_results($query);
+
+    $titleList = get_instructor_awards($id, true);
 
     $gallery = NULL;
 
@@ -104,7 +90,7 @@ function func_show_instructor($atts) {
         return '表示できるインストラクターはいません';
     }else{
         $HTML = '<div class="instructorSection" >';
-            $HTML = '<div class="instructorArea" >';
+            $HTML .= '<div class="instructorArea" >';
                 $HTML .= '<div class="instructorImg" >';
                     $HTML .= '<img src="' . $results->img_pass . '">';
                 $HTML .= '</div>';
@@ -156,3 +142,44 @@ function func_show_instructor($atts) {
     return $HTML;
 }
 add_shortcode('show_instructor', 'func_show_instructor');
+
+
+
+/**
+ *
+ * @return void
+ */
+function func_show_instructor_gallery($atts) {
+    $atts = shortcode_atts(array(
+        "id" => 1,
+    ),$atts);
+    $id = 1;
+
+    if($_GET['id']){
+        $id = $_GET['id'];
+    }
+
+    $galleries = get_instructor_galleries($id, true);
+
+    $HTML = '<div class="instructorSection" >';
+        $HTML .= '<div class="instructorArea" >';
+            $HTML = '<div class="instructorGalleryErea" >';
+                // $HTML .= '<div class="instructorGalleryWrapper" >ギャラリー</div>';
+                $HTML .= '<div class="instructorGalleryContent" >';
+                    if($galleries){
+                        foreach($galleries as $gallery){
+                            $HTML .= '<div class="instructorGalleryImg" ><img src="'. $gallery->img_pass .'"></div>';
+                        }
+                    }else{
+                        $HTML .= '現在画像はありません';
+                    }
+                $HTML .= '</div>';
+            $HTML .= '</div>';
+        $HTML .= '</div>';
+    $HTML .= '</div>';
+
+    return $HTML;
+}
+add_shortcode('show_instructor_gallery', 'func_show_instructor_gallery');
+
+

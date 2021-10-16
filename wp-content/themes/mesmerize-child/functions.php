@@ -159,17 +159,39 @@ function get_instructors_list(){
 /**
  *
  */
-function get_instructor_awards($instructorIdList){
+function get_instructor_galleries($instructorId, $display_flg = false){
+	global $wpdb;
+	$query="SELECT *
+            FROM instructor_garallys
+            WHERE instructor_id = $instructorId
+            AND del_flg = 0 ";
+    if($display_flg == true){
+        $query .= "AND display_flg = 1 ";
+    }
+    $query .= "ORDER BY rank ASC";
+	$results = $wpdb->get_results($query);
+	return $results;
+}
+
+/**
+ *
+ */
+function get_instructor_awards($instructorIdList, $display_flg = false){
 	global $wpdb;
 	$query="SELECT *
             FROM instructor_awards
             WHERE instructor_id IN ($instructorIdList)
-            AND del_flg = 0
-            ORDER BY rank ASC
-            ";
+            AND del_flg = 0 ";
+    if($display_flg == true){
+        $query .= "AND display_flg = 1 ";
+    }
+    $query .= "ORDER BY rank ASC";
 	$results = $wpdb->get_results($query);
 	return $results;
 }
+
+
+
 
 /**
  *
@@ -184,7 +206,7 @@ function show_instructorsList($atts) {
     $instructorIdList = array_column($instructorsList, 'id');
     $instructorIdList = implode(',', $instructorIdList);
 
-    $instructorAwardsList = get_instructor_awards($instructorIdList);
+    $instructorAwardsList = get_instructor_awards($instructorIdList, true);
     if(is_null($instructorsList)){
         return '表示できるインストラクターはいません';
     }else{

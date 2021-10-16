@@ -19,7 +19,6 @@
                 <tr>
                     <th>名前</th>
                     <th>キャリア</th>
-                    <th>性別</th>
                     <th>コメント</th>
                     <th>HP表示</th>
                     <th>編集</th>
@@ -33,7 +32,6 @@
                         ?>
                             <tr>
                                 <th><?= $instructor->instructor_name ?></th>
-                                <th></th>
                                 <th></th>
                                 <th></th>
                                 <th></th>
