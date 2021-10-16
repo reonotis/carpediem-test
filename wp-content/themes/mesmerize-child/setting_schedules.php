@@ -179,6 +179,7 @@ function get_displayPossible_schedules($course_Ids){
             INNER JOIN courses ON courses.id = schedules.course_id
             WHERE schedules.course_id IN ($course_Ids)
             AND schedules.del_flg IS NULL
+            ORDER BY week ASC, time ASC
     ";
     $results = $wpdb->get_results($query);
     return $results;
