@@ -8,7 +8,7 @@ jQuery(function(){
         console.log(courseScheduleWrapperTitle_id)
         if(courseScheduleWrapperTitle_id.indexOf("courseScheduleWrapperTitle")>=0){
             var num = courseScheduleWrapperTitle_id.substring(courseScheduleWrapperTitle_id.indexOf("courseScheduleWrapperTitle") + "courseScheduleWrapperTitle".length);
-            jQuery('#courseScheduleContent' + num).slideToggle(400 ,'swing');
+            jQuery('#courseScheduleContent' + num).slideToggle(200 ,'swing');
         }
     });
 });

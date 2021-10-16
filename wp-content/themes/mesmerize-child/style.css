@@ -390,23 +390,27 @@ ul.newNotice li:hover{
 	position: relative;
 	color:#111;
 	padding: 0 0 0 10px;
+	width: 400px;
+	margin: 0 auto;
 }
 .courseScheduleWrapper{
 	width: 100%;
 }
 .courseScheduleWrapperTitle{
 	display: inline-block;
-	padding: 10px;
+	width: 100%;
+	height: 46px;
+	background: #111;
+	color: #fff;
+	border-radius: 23px;
 	cursor: pointer;
-}
-.courseScheduleWrapperTitle::before{
-	position: absolute;
-	content: '▼';
-	left: 0;
-}
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .courseScheduleContent{
-
+	padding: 10px;
 }
 
 
