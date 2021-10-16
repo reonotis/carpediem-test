@@ -185,6 +185,12 @@ function get_displayPossible_schedules($course_Ids){
     return $results;
 }
 
+/**
+ * 特定のコース名を返す
+ *
+ * @param [type] $course_id
+ * @return void
+ */
 function get_course_name($course_id){
 	global $wpdb;
     $query="SELECT
@@ -194,8 +200,24 @@ function get_course_name($course_id){
     ";
     $results = $wpdb->get_var($query);
     return $results;
+}
 
-
+/**
+ * 曜日別の配列に設定しなおす
+ * @param [type] $scheduleList
+ * @return void
+ */
+function setting_SchedulesForWeekAndTime($scheduleList){
+    $result = [];
+    for($i = 0; $i < 7; $i++){ // 日曜日から土曜日まで回す
+        $result[$i] = [];
+        foreach($scheduleList as $key => $schedule){
+            if($schedule->week == $i){
+                $result[$i][$key] = $schedule->time;
+            }
+        }
+    }
+    return $result;
 }
 
 /**

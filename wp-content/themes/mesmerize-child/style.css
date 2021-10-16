@@ -389,8 +389,8 @@ ul.newNotice li:hover{
 .courseScheduleListArea{
 	position: relative;
 	color:#111;
-	padding: 0 0 0 10px;
-	width: 400px;
+	padding: 0 0 0 200px;
+	width: 600px;
 	margin: 0 auto;
 }
 .courseScheduleWrapper{
@@ -404,7 +404,6 @@ ul.newNotice li:hover{
 	color: #fff;
 	border-radius: 23px;
 	cursor: pointer;
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -412,6 +411,26 @@ ul.newNotice li:hover{
 .courseScheduleContent{
 	padding: 10px;
 }
+.scheduleWeekRow{
+	padding: 5px 0 5px 5px ;
+	border-bottom: solid 1px #111;
+    display: flex;
+    justify-content: left;
+}
+.scheduleWeekName{
+	width: 70px;
+    display: flex;
+    align-items: center;
+}
+.scheduleWeekContent{
+	width: calc(100% - 70px);
+}
+.scheduleWeekContentTime{
+	display: inline-block;
+	width: 73px;
+	padding: 0 8px 0 0;
+}
+
 
 
 

@@ -171,6 +171,7 @@ function func_show_course_schedule_list($atts) {
     $course_id = $atts['course_id'];
     $course_name = get_course_name($course_id);
     $scheduleList = get_displayPossible_schedules($course_id);
+    $scheduleList = setting_SchedulesForWeekAndTime($scheduleList);
 
     $HTML = '<div class="courseScheduleListArea" >';
         $HTML .= '<div class="courseScheduleWrapper">';
@@ -179,10 +180,19 @@ function func_show_course_schedule_list($atts) {
             $HTML .= '</div>';
         $HTML .= '</div>';
         $HTML .= '<div class="courseScheduleContent" id="courseScheduleContent'.$course_id.'" style="display: none;">';
-            foreach($scheduleList as $schedule){
-                $HTML .= '<div class="">';
-                    $HTML .= get_weekName($schedule->week) . '　' . date('H:i', strtotime($schedule->time)) . '～';
-                $HTML .= '</div>';
+            foreach($scheduleList as $week => $schedule){
+                if(!empty($schedule)){
+                    $HTML .= '<div class="scheduleWeekRow">';
+                        // 曜日を表示する
+                        $HTML .= '<div class="scheduleWeekName">' . get_weekName($week) . ' :</div>';
+                        // 時間を全て表示する
+                        $HTML .= '<div class="scheduleWeekContent">';
+                            foreach($schedule as $data){
+                                $HTML .= '<span class="scheduleWeekContentTime">' . date('H:i', strtotime($data)) . '～,</span>';
+                            }
+                        $HTML .= '</div>';
+                    $HTML .= '</div>';
+                }
             }
         $HTML .= '</div>';
     $HTML .= '</div>';
