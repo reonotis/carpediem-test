@@ -30,6 +30,27 @@ function theme_enqueue_styles() {
 // ここからオリジナル
 
 /**
+ * 曜日を日本語にして返す
+ *
+ * @param [type] $week_num
+ * @return void
+ */
+function get_weekName($week_num){
+    // TODO エラーハンドリングしたい
+    $week = [
+        0 => '日',
+        1 => '月',
+        2 => '火',
+        3 => '水',
+        4 => '木',
+        5 => '金',
+        6 => '土',
+    ];
+    return $week[$week_num] . '曜日';
+}
+
+
+/**
  * 渡されたレコードに日本語の曜日をセットする
  *
  * @param [type] $date
@@ -136,6 +157,34 @@ function show_scheduleTable($atts) {
 add_shortcode('show_schedule_Table', 'show_scheduleTable');
 
 
+
+/**
+ *
+ *
+ * @return void
+ */
+function func_show_course_schedule_list($atts) {
+    // TODO エラーハンドリングしたい
+    $atts = shortcode_atts(array(
+        "course_id" => NULL,
+    ),$atts);
+    $course_id = $atts['course_id'];
+    $course_name = get_course_name($course_id);
+    $scheduleList = get_displayPossible_schedules($course_id);
+
+    $HTML = '<div class="" >';
+        $HTML = '<div class="" >' . $course_name . '</div>';
+        $HTML = '<div class="" >';
+            foreach($scheduleList as $schedule){
+                $HTML .= '<div class="">';
+                    $HTML .= get_weekName($schedule->week) . '　' . date('H:i', strtotime($schedule->time)) . '～';
+                $HTML .= '</div>';
+            }
+        $HTML .= '</div>';
+    $HTML .= '</div>';
+    return $HTML;
+}
+add_shortcode('show_course_schedule_list', 'func_show_course_schedule_list');
 
 
 

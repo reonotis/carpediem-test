@@ -184,6 +184,19 @@ function get_displayPossible_schedules($course_Ids){
     return $results;
 }
 
+function get_course_name($course_id){
+	global $wpdb;
+    $query="SELECT
+            courses.course_name
+            FROM courses
+            WHERE id = $course_id
+    ";
+    $results = $wpdb->get_var($query);
+    return $results;
+
+
+}
+
 /**
  * Undocumented function
  *
