@@ -1,6 +1,20 @@
 
 
 
+//
+jQuery(function(){
+    jQuery('.courseScheduleWrapperTitle').on('click', function() {
+        var courseScheduleWrapperTitle_id = jQuery(this).attr('id');
+        console.log(courseScheduleWrapperTitle_id)
+        if(courseScheduleWrapperTitle_id.indexOf("courseScheduleWrapperTitle")>=0){
+            var num = courseScheduleWrapperTitle_id.substring(courseScheduleWrapperTitle_id.indexOf("courseScheduleWrapperTitle") + "courseScheduleWrapperTitle".length);
+            jQuery('#courseScheduleContent' + num).slideToggle(400 ,'swing');
+        }
+    });
+});
+
+
+
 // Q & A でクリックしたときの動作
 jQuery(function(){
     jQuery('.qa_title').on('click', function() {
@@ -11,3 +25,8 @@ jQuery(function(){
         }
     });
 });
+
+
+
+
+

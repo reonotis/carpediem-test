@@ -172,9 +172,13 @@ function func_show_course_schedule_list($atts) {
     $course_name = get_course_name($course_id);
     $scheduleList = get_displayPossible_schedules($course_id);
 
-    $HTML = '<div class="" >';
-        $HTML = '<div class="" >' . $course_name . '</div>';
-        $HTML = '<div class="" >';
+    $HTML = '<div class="courseScheduleListArea" >';
+        $HTML .= '<div class="courseScheduleWrapper">';
+            $HTML .= '<div class="courseScheduleWrapperTitle" id="courseScheduleWrapperTitle'.$course_id.'">';
+                $HTML .= $course_name . 'の開催日時を確認する';
+            $HTML .= '</div>';
+        $HTML .= '</div>';
+        $HTML .= '<div class="courseScheduleContent" id="courseScheduleContent'.$course_id.'" style="display: none;">';
             foreach($scheduleList as $schedule){
                 $HTML .= '<div class="">';
                     $HTML .= get_weekName($schedule->week) . '　' . date('H:i', strtotime($schedule->time)) . '～';
