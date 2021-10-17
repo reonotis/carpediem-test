@@ -396,7 +396,7 @@ ul.newNotice li:hover{
 @media screen and (max-width:650px){
 	.courseScheduleListArea{
 		padding: 0;
-		width: 300px;
+		width: 330px;
 		margin: 0 auto;
 	}
 }
@@ -414,6 +414,12 @@ ul.newNotice li:hover{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+@media screen and (max-width:650px){
+	.courseScheduleWrapperTitle{
+		width: 300px;
+		margin: 0 auto;
+	}
 }
 .courseScheduleContent{
 	padding: 10px;
