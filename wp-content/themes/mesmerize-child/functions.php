@@ -2,23 +2,41 @@
 
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles' );
 function theme_enqueue_styles() {
-    wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
-    wp_enqueue_style( 'modal-video', 'https://cdnjs.cloudflare.com/ajax/libs/lity/2.3.1/lity.css' );
+    wp_enqueue_style(
+        'parent-style',
+        get_template_directory_uri() . '/style.css',
+        array(),
+        '1.1.1'
+    );
+    wp_enqueue_style(
+        'modal-video',
+        'https://cdnjs.cloudflare.com/ajax/libs/lity/2.3.1/lity.css',
+        array(),
+        '1.1.1'
+    );
     wp_enqueue_script(
         'jquery',
-        'https://code.jquery.com/jquery-2.2.4.min.js'
+        'https://code.jquery.com/jquery-2.2.4.min.js',
+        array(),
+        '1.1.1'
     );
     wp_enqueue_script(
         'q_and_a-script',
-        get_stylesheet_directory_uri() . '/js/mesmerize-child.js'
+        get_stylesheet_directory_uri() . '/js/mesmerize-child.js',
+        array(),
+        '1.1.1'
     );
     wp_enqueue_script(
         'main-script',
-        get_template_directory_uri() . '-child/js/jquery.waypoints.min.js'
+        get_template_directory_uri() . '-child/js/jquery.waypoints.min.js',
+        array(),
+        '1.1.1'
     );
     wp_enqueue_script(
         'jquery-modal-video.min',
-        'https://cdnjs.cloudflare.com/ajax/libs/lity/2.3.1/lity.js'
+        'https://cdnjs.cloudflare.com/ajax/libs/lity/2.3.1/lity.js',
+        array(),
+        '1.1.1'
     );
 }
 
@@ -393,10 +411,10 @@ function member_info_table1($membership_type, $results, $type_id){
             <th>参加可能コース</th>
         </tr>
         <tr>
-            <td>'. nl2br($membership_type->target_person) .'</td>
-            <td>11,000円</td>
-            <td>'. number_format($membership_type->monthly_fee) .'円</td>
-            <td>';
+            <td data-label="対象" >'. nl2br($membership_type->target_person) .'</td>
+            <td data-label="入会金" >11,000円</td>
+            <td data-label="月会費" >'. number_format($membership_type->monthly_fee) .'円</td>
+            <td data-label="参加可能コース" >';
                 foreach($results as $data){
                     $html .= $data->course_name. '<br>' ;
                 }

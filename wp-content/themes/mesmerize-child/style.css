@@ -393,6 +393,13 @@ ul.newNotice li:hover{
 	width: 600px;
 	margin: 0 auto;
 }
+@media screen and (max-width:650px){
+	.courseScheduleListArea{
+		padding: 0;
+		width: 350px;
+		margin: 0 auto;
+	}
+}
 .courseScheduleWrapper{
 	width: 100%;
 }
@@ -424,13 +431,13 @@ ul.newNotice li:hover{
 }
 .scheduleWeekContent{
 	width: calc(100% - 70px);
+	text-align: left;
 }
 .scheduleWeekContentTime{
 	display: inline-block;
 	width: 73px;
 	padding: 0 8px 0 0;
 }
-
 
 
 
@@ -827,7 +834,6 @@ ul.instructorTitleList>li{
     -webkit-border-horizontal-spacing: 0px;
     -webkit-border-vertical-spacing: 0px;
 }
-
 .member_info_table1 th{
     background: #111;
 	color: #fff;
@@ -846,6 +852,38 @@ ul.instructorTitleList>li{
 .member_info_table1 td:last-child {
     padding-right: 16px;
 }
+@media screen and (max-width:650px){
+	.member_info_table1 th{
+		display: none;
+	}
+	.member_info_table1 td{
+		position: relative;
+		display: block;
+		padding: 0 5px 5px;
+		margin: 0 0 5px;
+		text-align: left;
+		overflow-wrap: normal;
+	}
+	.member_info_table1 td:first-child {
+		padding-left: 5px;
+	}
+	.member_info_table1 td:last-child {
+		padding-right: 5px;
+	}
+	.member_info_table1 td:before{
+		position: relative;
+		content: attr(data-label);
+		margin-bottom: 5px;
+		padding: 5px 10px;
+		display: block;
+		color: #fff;
+		background-color: #111;
+		font-weight: bold;
+		width: calc(100% + 10px);
+		left: -5px;
+	}
+}
+
 
 
 .member_info_table2{
@@ -876,3 +914,8 @@ ul.instructorTitleList>li{
     padding-right: 16px;
 }
 
+@media screen and (max-width:650px){
+	.member_info_table2 th{
+		width: 100px;
+	}
+}
