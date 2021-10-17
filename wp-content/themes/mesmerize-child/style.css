@@ -396,7 +396,7 @@ ul.newNotice li:hover{
 @media screen and (max-width:650px){
 	.courseScheduleListArea{
 		padding: 0;
-		width: 350px;
+		width: 300px;
 		margin: 0 auto;
 	}
 }
