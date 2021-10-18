@@ -55,6 +55,7 @@ function get_instructors(){
 
 	$query="SELECT *
             FROM instructors
+            WHERE del_flg = 0
             ";
 	$results = $wpdb->get_results($query);
 	return $results;

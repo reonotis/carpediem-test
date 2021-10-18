@@ -231,6 +231,7 @@ function get_instructors_list(){
 	$query="SELECT *
             FROM instructors
             WHERE del_flg = 0
+            AND display_flg = 1
             ORDER BY rank asc
             ";
 	$results = $wpdb->get_results($query);

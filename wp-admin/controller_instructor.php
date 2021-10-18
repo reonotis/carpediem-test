@@ -9,14 +9,21 @@ class Instructor {
 
 	public function register( ) {
 		try {
-			$instructor_name  = $_POST['instructor_name'] ;
-			$instructor_name_en = $_POST['instructor_name_en'] ;
-			$email            = $_POST['email'] ;
+			$instructor_name = $_POST['instructor_name'] ;
+			$instructor_level = $_POST['instructor_level'] ;
+			$band_colour = $_POST['band_colour'] ;
+			$email = $_POST['email'] ;
+			$faceBook_url = $_POST['faceBook_url'] ;
+			$instagram_url = $_POST['instagram_url'] ;
+			$twitter_url = $_POST['twitter_url'] ;
+			$introduction = $_POST['introduction'] ;
+			$lesson_fee = $_POST['lesson_fee'] ;
+			$lesson_fee_4time = $_POST['lesson_fee_4time'] ;
+			$display_flg = $_POST['display_flg'] ;
 
 			// エラーチェックを行う
 			$err_lists = [];
             if( !$instructor_name ) array_push($err_lists,'インストラクター名が入力されていません');
-            if( !$instructor_name_en ) array_push($err_lists,'インストラクター名(英)が入力されていません');
             if( !$email ) array_push($err_lists,'メールアドレスが入力されていません');
 
 			if($err_lists) throw new \Exception();
@@ -25,11 +32,19 @@ class Instructor {
 			global $wpdb;
 
             $wpdb->insert(
-                    'instructor',
+                    'instructors',
                 array(
-                    'instructor_name'    => $instructor_name,
-                    'instructor_name_en' => $instructor_name_en,
-                    'email'           => $email,
+                    'instructor_name' => $instructor_name,
+                    'instructor_level' => $instructor_level,
+                    'band_colour' => $band_colour,
+                    'introduction' => $introduction,
+                    'faceBook_url' => $faceBook_url,
+                    'instagram_url' => $instagram_url,
+                    'twitter_url' => $twitter_url,
+                    'email' => $email,
+                    'lesson_fee' => $lesson_fee,
+                    'lesson_fee_4time' => $lesson_fee_4time,
+                    'display_flg' => $display_flg
                     //     ),array(
                     //       '%s', //date
                     //       '%s', //open_time
@@ -45,22 +60,20 @@ class Instructor {
 			$ID = $wpdb->insert_id;
 
 			// 並び順を決めておく
-			// $wpdb->update(
-			// 	'my_instructor',
-            //     array(
-            //         'sort' => $ID
-            //     ),
-            //     array( 'ID' =>  $ID ),
-			// );
+			$wpdb->update(
+				'instructors',
+                array(
+                    'rank' => $ID
+                ),
+                array( 'ID' =>  $ID ),
+			);
 
             add_settings_error( 'settings_errors', 'settings_errors', '登録が完了しました。', 'success' );
             // add_settings_error()した内容を、DBに一時保存する
             set_transient( 'settings_errors', get_settings_errors(), 30 );
 
-            // Redirect back to the settings page that was submitted.
-            $goback = add_query_arg( 'settings-updated', 'true', wp_get_referer() );
-            // $goback = add_query_arg( 'settings-updated', 'true', 'http://paralymbics.jp/wp-admin/admin.php?page=custom_instructor_page' );
-            wp_redirect( $goback .'&id=2');
+			$goback = add_query_arg( 'settings-updated', 'true', './admin.php?page=edit_teacher_page' );
+            wp_redirect( $goback .'&ID='. $ID);
             exit;
 
 		} catch (\Exception $e) {
@@ -74,9 +87,17 @@ class Instructor {
 
             $aaa = array(
                 'settings-updated' => true,
-                'instructor_name' => $instructor_name,
-                'instructor_name_en' => $instructor_name_en,
-                'email' => $email,
+				'instructor_name' => $instructor_name,
+				'instructor_level' => $instructor_level,
+				'band_colour' => $band_colour,
+				'email' => $email,
+				'faceBook_url' => $faceBook_url,
+				'instagram_url' => $instagram_url,
+				'twitter_url' => $twitter_url,
+				'introduction' => $introduction,
+				'display_flg' => $display_flg,
+				'lesson_fee' => $lesson_fee,
+				'lesson_fee_4time' => $lesson_fee_4time,
             );
             // Redirect back to the settings page that was submitted.
             $goback = add_query_arg( $aaa, wp_get_referer() );
@@ -234,6 +255,7 @@ class Instructor {
 					'faceBook_url'    => $faceBook_url,
 					'instagram_url' => $instagram_url,
 					'twitter_url' => $twitter_url,
+					'display_flg' => $display_flg,
 					'email'  => $email,
 					'lesson_fee'  => $lesson_fee,
 					'lesson_fee_4time'  => $lesson_fee_4time,
@@ -241,25 +263,12 @@ class Instructor {
 				array( 'ID' =>  $ID ),// where句
 			);
 
-			//
-			// $wpdb->update('my_intr_info',
-			// 	array(
-			// 		'intr_Img' => $intr_img_url_id,
-			// 		'intr_Career'  => $intr_Career,
-			// 		'intr_Comment' => $intr_Comment,
-			// 		'intr_mailmaga'  => $melmaga,
-			// 		'intr_FB'    => $fb,
-			// 		'intr_Inst'  => $Instagram,
-			// 		'intr_Twitter'  => $Twitter,
-			// 		'intr_Line'  => $LINE,
-			// 		'intr_Blog'  => $Blog,
-			// 		'intr_HP'    => $intr_HP
-			// 	),
-			// 	// where句
-			// 	array( 'intr_id' =>  $ID ),
-			// );
+			add_settings_error( 'settings_errors', 'settings_errors', '更新しました', 'success' );
+			// add_settings_error()した内容を、DBに一時保存する
+			set_transient( 'settings_errors', get_settings_errors(), 30 );
 
-			wp_redirect( './admin.php?page=edit_teacher_page&ID='.$ID );
+			$goback = add_query_arg( 'settings-updated', 'true', wp_get_referer() );
+			wp_redirect( $goback );
 			exit;
 
 		} catch (\Exception $e) {
@@ -283,20 +292,15 @@ class Instructor {
     public function delete() {
 		try {
 
-			$ID = $_POST['ID'];
-			$timestamp = date('Y-m-d h:i:s');
-			$user = wp_get_current_user();
-			$userID = $user->ID;
+			$id = $_POST['id'];
 
 			global $wpdb;
 			$wpdb->update(
-				'my_instructor',
+				'instructors',
                 array(
-                        'delete_at' => $timestamp,
-                        'delete_by' => $userID,
-                        'delete_wp' => '1'
+                        'del_flg' =>1,
                 ),
-				array( 'ID' =>  $ID )   // where句
+				array( 'id' =>  $id )   // where句
 			);
 
             add_settings_error( 'settings_errors', 'settings_errors', '削除が完了しました。', 'success' );
@@ -305,7 +309,7 @@ class Instructor {
 
             // Redirect back to the settings page that was submitted.
             // $goback = add_query_arg( 'settings-updated', 'true', wp_get_referer() );
-            $goback = add_query_arg( 'settings-updated', 'true', 'http://paralymbics.jp/wp-admin/admin.php?page=custom_instructor_page'  );
+            $goback = add_query_arg( 'settings-updated', 'true', './admin.php?page=list_of_teacher'  );
             wp_redirect( $goback );
             exit;
 
@@ -325,7 +329,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { //POSTが渡されたら
 	if($_POST['award_update'] )$instructor -> award_update();
 	if($_POST['award_delete'] )$instructor -> award_delete();
 	if($_POST['register'] )$instructor -> register();
-	// if($_POST['delete'] )$instructor -> delete();
+	if($_POST['delete'] )$instructor -> delete();
 }
 
 ?>
