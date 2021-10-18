@@ -252,13 +252,13 @@ class Instructor {
 					'instructor_level' => $instructor_level,
 					'band_colour' => $band_colour,
 					'introduction' => $introduction,
-					'faceBook_url'    => $faceBook_url,
+					'faceBook_url' => $faceBook_url,
 					'instagram_url' => $instagram_url,
 					'twitter_url' => $twitter_url,
 					'display_flg' => $display_flg,
-					'email'  => $email,
-					'lesson_fee'  => $lesson_fee,
-					'lesson_fee_4time'  => $lesson_fee_4time,
+					'email' => $email,
+					'lesson_fee' => $lesson_fee,
+					'lesson_fee_4time' => $lesson_fee_4time,
 				),
 				array( 'ID' =>  $ID ),// where句
 			);

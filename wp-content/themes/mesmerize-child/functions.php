@@ -297,7 +297,9 @@ function show_instructorsList($atts) {
                 foreach($instructorsList as $instructor ){
                     $HTML .= '<div class="instructorBox" >';
                         $HTML .= '<div class="instr_img" >';
+                        if($instructor->img_pass){
                             $HTML .= '<img src="' . $instructor->img_pass . '" >';
+                        }
                         $HTML .= '</div>';
                         $HTML .= '<div class="instr_level ' . $instructor->band_colour . '" >' . $instructor->instructor_level . '</div>';
                         $HTML .= '<div class="instr_level_support" ><div class="instr_level_support_knot" ></div></div>';
