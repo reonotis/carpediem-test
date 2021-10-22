@@ -661,13 +661,29 @@ ul.newNotice li:hover{
 	font-weight: 600;
 }
 .instructorLevel{
-	padding: 10px 0 0 10px;
+	padding: 10px 10px 0;
 	margin: 0 0 30px;
 	font-size: 1.3em;
 	font-weight: 600;
 	border-top: solid 1px #666;
 	display: inline-block;
 }
+.specialMove{
+	margin: 20px 0 0;
+}
+.specialMoveTitle{
+	width: 100%;
+	margin: 0 3px 3px;
+	padding: 0 8px 3px;
+	font-size: 20px;
+	font-weight: 500;
+	border-bottom: solid 1px #ddd;
+}
+.specialMoveContent{
+	padding: 0 8px 3px;
+
+}
+
 .snsList{
 	margin: 20px auto;
 	width: 900px;

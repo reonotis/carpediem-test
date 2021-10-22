@@ -70,7 +70,6 @@ function func_show_instructor($atts) {
         "id" => 1,
     ),$atts);
     $id = 1;
-
     if($_GET['id']){
         $id = $_GET['id'];
     }
@@ -85,8 +84,6 @@ function func_show_instructor($atts) {
 
     $titleList = get_instructor_awards($id, true);
 
-    $gallery = NULL;
-
     if(is_null($results)){
         return '表示できるインストラクターはいません';
     }else{
@@ -99,6 +96,10 @@ function func_show_instructor($atts) {
                     $HTML .= '<div class="instructorName" >' . $results->instructor_name . '</div>';
                     $HTML .= '<div class="instructorLevel" >' . $results->instructor_level . '</div>';
                     $HTML .= '<div class="introduction" >' . nl2br($results->introduction) . '</div>';
+                    $HTML .= '<div class="specialMove" >';
+                        $HTML .= '<div class="specialMoveTitle" >得意技</div>';
+                        $HTML .= '<div class="specialMoveContent" >'. nl2br($results->special_move).'</div>';
+                    $HTML .= '</div>';
                 $HTML .= '</div>';
                 if(!empty($results->faceBook_url) || !empty($results->instagram_url) || !empty($results->twitter_url) ){
                     $HTML .= '<div class="snsList" >';
@@ -136,17 +137,7 @@ function func_show_instructor($atts) {
                         $HTML .= '<div class="privateLessonTitle" data-en="Lesson_Features" >【レッスンの特徴】</div>';
                         $HTML .= nl2br($results->lesson_features);
                     $HTML .= '</div>';
-                    $HTML .= '<div class="privateLessonContent">';
-                        $HTML .= '<div class="privateLessonTitle" data-en="Special_Move" >【得意技】</div>';
-                        $HTML .= '得意技が未設定です';
-                    $HTML .= '</div>';
                 $HTML .= '</div>';
-                if($gallery){
-                    $HTML .= '<div class="instructorGallery" >';
-                            $HTML .= '<div class="" >ギャラリー</div>';
-                    $HTML .= '</div>';
-                }
-                // $HTML .= '<div class="" >' . $results->email . '</div>';
             $HTML .= '</div>';
         $HTML .= '</div>';
     }
