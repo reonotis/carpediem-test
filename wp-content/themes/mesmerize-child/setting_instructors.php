@@ -95,7 +95,10 @@ function func_show_instructor($atts) {
                 $HTML .= '<div class="instructorContents" >';
                     $HTML .= '<div class="instructorName" >' . $results->instructor_name . '</div>';
                     $HTML .= '<div class="instructorLevel" >' . $results->instructor_level . '</div>';
-                    $HTML .= '<div class="introduction" >' . nl2br($results->introduction) . '</div>';
+                    $HTML .= '<div class="introduction" >' ;
+                        $HTML .= '<div class="specialMoveTitle" >自己紹介</div>';
+                        $HTML .= '<div class="specialMoveContent" >'. nl2br($results->introduction).'</div>';
+                    $HTML .= '</div>';
                     $HTML .= '<div class="specialMove" >';
                         $HTML .= '<div class="specialMoveTitle" >得意技</div>';
                         $HTML .= '<div class="specialMoveContent" >'. nl2br($results->special_move).'</div>';
