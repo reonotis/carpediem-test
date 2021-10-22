@@ -123,13 +123,24 @@ function func_show_instructor($atts) {
                         $HTML .= '</ul>';
                     $HTML .= '</div>';
                 }
-                if($results->lesson_fee){
-                    $HTML .= '<div class="instructorLessonFeeErea" >';
-                            $HTML .= '<div class="instructorLessonFeeWrapper" >プライベートレッスン</div>';
-                            $HTML .= '<div class="" >1回 : '.number_format($results->lesson_fee).'円</div>';
-                            $HTML .= '<div class="" >4回 : '.number_format($results->lesson_fee_4time).'円</div>';
+                $HTML .= '<div class="instructorPrivateLessonArea" >';
+                    $HTML .= '<div class="instructorPrivateLessonWrapper" >プライベートレッスン</div>';
+                    if($results->lesson_fee){
+                        $HTML .= '<div class="privateLessonContent instructorLessonFeeContent " >';
+                            $HTML .= '<div class="privateLessonTitle" data-en="Lesson_Fee" >【レッスン費】</div>';
+                            $HTML .= '<div class="LessonFeeContent" >1回 : '.number_format($results->lesson_fee).'円</div>';
+                            $HTML .= '<div class="LessonFeeContent" >4回パック : '.number_format($results->lesson_fee_4time).'円</div>';
+                        $HTML .= '</div>';
+                    }
+                    $HTML .= '<div class="privateLessonContent">';
+                        $HTML .= '<div class="privateLessonTitle" data-en="Lesson_Features" >【レッスンの特徴】</div>';
+                        $HTML .= nl2br($results->lesson_features);
                     $HTML .= '</div>';
-                }
+                    $HTML .= '<div class="privateLessonContent">';
+                        $HTML .= '<div class="privateLessonTitle" data-en="Special_Move" >【得意技】</div>';
+                        $HTML .= '得意技が未設定です';
+                    $HTML .= '</div>';
+                $HTML .= '</div>';
                 if($gallery){
                     $HTML .= '<div class="instructorGallery" >';
                             $HTML .= '<div class="" >ギャラリー</div>';
