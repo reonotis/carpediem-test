@@ -272,7 +272,16 @@ function get_instructor_awards($instructorIdList, $display_flg = false){
 	return $results;
 }
 
-
+function get_instructors_courses_mapping($instructors_id){
+	global $wpdb;
+	$query="SELECT courses.course_name_en
+            FROM instructors_courses_mapping
+            LEFT JOIN courses ON instructors_courses_mapping.courses_id = courses.id
+            WHERE instructors_courses_mapping.instructors_id = $instructors_id
+            ";
+	$results = $wpdb->get_results($query);
+	return $results;
+}
 
 
 /**

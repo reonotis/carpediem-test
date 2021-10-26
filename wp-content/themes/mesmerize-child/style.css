@@ -662,7 +662,7 @@ ul.newNotice li:hover{
 }
 .instructorLevel{
 	padding: 10px 10px 0;
-	margin: 0 0 30px;
+	margin: 0;
 	font-size: 1.3em;
 	font-weight: 600;
 	border-top: solid 1px #666;
@@ -685,35 +685,42 @@ ul.newNotice li:hover{
 }
 
 .snsList{
-	margin: 20px auto;
-	width: 900px;
+	margin: 20px 0;
+	width: 100%;
+	max-width: 400px;
 	display: flex;
     flex-flow: wrap;
     justify-content: space-around;
 }
+.snsList::before{
+	content: none;
+}
 .snsList> a > div{
-	width: 70px;
+	width: 40px;
 }
-.instructorTitleErea{
+.instructorTitleArea{
 	width: 100%;
-	padding: 50px;
-	margin: 50px auto;
-	background: #000;
-	color: #fff;
+	max-width: 800px;
+	margin: 0 auto 20px;
 }
+
 .instructorTitleWrapper{
-	padding: 20px 0 ;
-	margin: 0 0 30PX;
+	padding: 20px 0 10px;
+	margin: 0 0 10px;
 	text-align: center;
-	font-size: 1.6em;
-	border-top: double 7px #fff;
-	border-bottom: double 7px #fff;
+	font-size: 20px;
+	font-weight: 600;
+	border-bottom: solid 1px #333;
 }
 ul.instructorTitleList{
 	margin-bottom: 0;
 }
 ul.instructorTitleList>li{
-	margin-bottom: 10px;
+	margin: 0 auto 10px;
+	max-width: 600px;
+}
+.instructorTitleArea:nth-child(4){
+	margin: 0 auto 80px;
 }
 .instructorPrivateLessonArea{
 	width: 100%;

@@ -84,6 +84,8 @@ function func_show_instructor($atts) {
 
     $titleList = get_instructor_awards($id, true);
 
+    $chargeClasses = get_instructors_courses_mapping($id);
+
     if(is_null($results)){
         return '表示できるインストラクターはいません';
     }else{
@@ -96,6 +98,19 @@ function func_show_instructor($atts) {
                     $HTML .= '<div class="instructorName" >' . $results->instructor_name . '</div>';
                     $HTML .= '<div class="instructorLevel" >' . $results->instructor_level . '</div>';
                     $HTML .= '<div class="introduction" >' ;
+                    if(!empty($results->faceBook_url) || !empty($results->instagram_url) || !empty($results->twitter_url) ){
+                        $HTML .= '<div class="snsList" >';
+                            if(!empty($results->faceBook_url)){
+                                $HTML .= '<a href="' . $results->faceBook_url . '" target="_blank" ><div class="" ><img src="' . get_stylesheet_directory_uri() . '/img/FB_logo.png" ></div></a>';
+                            }
+                            if(!empty($results->instagram_url)){
+                                $HTML .= '<a href="' . $results->instagram_url . '" target="_blank" ><div class="" ><img src="' . get_stylesheet_directory_uri() . '/img/instrgram-150x150.png" ></div></a>';
+                            }
+                            if(!empty($results->twitter_url)){
+                                $HTML .= '<a href="' . $results->instagram_url . '" target="_blank" ><div class="" ><img src="' . get_stylesheet_directory_uri() . '/img/Twitter_Icon-150x150.png" ></div></a>';
+                            }
+                        $HTML .= '</div>';
+                    }
                         $HTML .= '<div class="specialMoveTitle" >自己紹介</div>';
                         $HTML .= '<div class="specialMoveContent" >'. nl2br($results->introduction).'</div>';
                     $HTML .= '</div>';
@@ -104,22 +119,9 @@ function func_show_instructor($atts) {
                         $HTML .= '<div class="specialMoveContent" >'. nl2br($results->special_move).'</div>';
                     $HTML .= '</div>';
                 $HTML .= '</div>';
-                if(!empty($results->faceBook_url) || !empty($results->instagram_url) || !empty($results->twitter_url) ){
-                    $HTML .= '<div class="snsList" >';
-                        if(!empty($results->faceBook_url)){
-                            $HTML .= '<a href="' . $results->faceBook_url . '" target="_blank" ><div class="" ><img src="' . get_stylesheet_directory_uri() . '/img/FB_logo.png" ></div></a>';
-                        }
-                        if(!empty($results->instagram_url)){
-                            $HTML .= '<a href="' . $results->instagram_url . '" target="_blank" ><div class="" ><img src="' . get_stylesheet_directory_uri() . '/img/instrgram-150x150.png" ></div></a>';
-                        }
-                        if(!empty($results->twitter_url)){
-                            $HTML .= '<a href="' . $results->instagram_url . '" target="_blank" ><div class="" ><img src="' . get_stylesheet_directory_uri() . '/img/Twitter_Icon-150x150.png" ></div></a>';
-                        }
-                    $HTML .= '</div>';
-                }
                 if($titleList){
-                    $HTML .= '<div class="instructorTitleErea" >';
-                        $HTML .= '<div class="instructorTitleWrapper" >タイトル</div>';
+                    $HTML .= '<div class="instructorTitleArea" >';
+                        $HTML .= '<div class="instructorTitleWrapper" >主なタイトル</div>';
                         $HTML .= '<ul class="instructorTitleList">';
                             foreach($titleList as $title){
                                 $HTML .= '<li>'.$title->award.'</li>';
@@ -127,6 +129,14 @@ function func_show_instructor($atts) {
                         $HTML .= '</ul>';
                     $HTML .= '</div>';
                 }
+                $HTML .= '<div class="instructorTitleArea" >';
+                    $HTML .= '<div class="instructorTitleWrapper" >担当クラス</div>';
+                    $HTML .= '<ul class="instructorTitleList">';
+                            foreach($chargeClasses as $chargeClass){
+                                $HTML .= '<li>'.$chargeClass->course_name_en.'</li>';
+                            }
+                    $HTML .= '</ul>';
+                $HTML .= '</div>';
                 $HTML .= '<div class="instructorPrivateLessonArea" >';
                     $HTML .= '<div class="instructorPrivateLessonWrapper" >プライベートレッスン</div>';
                     if($results->lesson_fee){
