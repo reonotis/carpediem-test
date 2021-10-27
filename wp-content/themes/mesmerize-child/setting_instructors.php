@@ -133,7 +133,7 @@ function func_show_instructor($atts) {
                     $HTML .= '<div class="instructorTitleWrapper" >担当クラス</div>';
                     $HTML .= '<ul class="instructorTitleList">';
                             foreach($chargeClasses as $chargeClass){
-                                $HTML .= '<li>'.$chargeClass->course_name_en.'</li>';
+                                $HTML .= '<li>'.$chargeClass->course_name.'</li>';
                             }
                     $HTML .= '</ul>';
                 $HTML .= '</div>';
