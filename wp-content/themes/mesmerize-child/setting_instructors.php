@@ -129,14 +129,16 @@ function func_show_instructor($atts) {
                         $HTML .= '</ul>';
                     $HTML .= '</div>';
                 }
-                $HTML .= '<div class="instructorTitleArea" >';
-                    $HTML .= '<div class="instructorTitleWrapper" >担当クラス</div>';
-                    $HTML .= '<ul class="instructorTitleList">';
-                            foreach($chargeClasses as $chargeClass){
-                                $HTML .= '<li>'.$chargeClass->course_name.'</li>';
-                            }
-                    $HTML .= '</ul>';
-                $HTML .= '</div>';
+                if(!empty($chargeClasses)){
+                    $HTML .= '<div class="instructorTitleArea" >';
+                        $HTML .= '<div class="instructorTitleWrapper" >担当クラス</div>';
+                        $HTML .= '<ul class="instructorTitleList">';
+                                foreach($chargeClasses as $chargeClass){
+                                    $HTML .= '<li>'.$chargeClass->course_name.'</li>';
+                                }
+                        $HTML .= '</ul>';
+                    $HTML .= '</div>';
+                }
                 $HTML .= '<div class="instructorPrivateLessonArea" >';
                     $HTML .= '<div class="instructorPrivateLessonWrapper" >プライベートレッスン</div>';
                     if($results->lesson_fee){
