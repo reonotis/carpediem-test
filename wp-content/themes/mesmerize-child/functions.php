@@ -206,7 +206,10 @@ function func_show_course_schedule_list($atts) {
                         // 時間を全て表示する
                         $HTML .= '<div class="scheduleWeekContent">';
                             foreach($schedule as $data){
-                                $HTML .= '<span class="scheduleWeekContentTime">' . date('H:i', strtotime($data)) . '～,</span>';
+                                $HTML .= '<span class="scheduleWeekContentTime">';
+                                    $endTime = strtotime('+' . $data['sectionTime'] . 'minute', strtotime($data['start_time']));
+                                    $HTML .=  date('H:i', strtotime($data['start_time'])) . '～' . date('H:i', $endTime);
+                                $HTML .= '</span>';
                             }
                         $HTML .= '</div>';
                     $HTML .= '</div>';
@@ -358,7 +361,11 @@ function func_showNewNotice(){
             foreach( $information as $post ):
                 $HTML .= '<a href="' . $post->guid . '">';
                     $HTML .= '<li>';
-                        $HTML .= date('Y年m月d日 ', strtotime($post->post_date) ) . '　>　' . $post->post_title ;
+                    $HTML .= date('Y年m月d日 ', strtotime($post->post_date) ) . '　>　' ;
+                        if($post->post_date >= date("Y-m-d H:i:s",strtotime("-1 week"))){
+                            $HTML .= '<span class="newNoticeLatest">NEW</span>';
+                        }
+                        $HTML .=  $post->post_title ;
                     $HTML .= '</li>';
                 $HTML .= '</a>';
             endforeach;

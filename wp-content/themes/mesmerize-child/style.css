@@ -440,8 +440,8 @@ ul.newNotice li:hover{
 	text-align: left;
 }
 .scheduleWeekContentTime{
-	display: inline-block;
-	width: 73px;
+	display: block;
+	width: 100%;
 	padding: 0 8px 0 0;
 }
 

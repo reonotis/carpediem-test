@@ -213,7 +213,8 @@ function setting_SchedulesForWeekAndTime($scheduleList){
         $result[$i] = [];
         foreach($scheduleList as $key => $schedule){
             if($schedule->week == $i){
-                $result[$i][$key] = $schedule->time;
+                $result[$i][$key]['start_time'] = $schedule->time;
+                $result[$i][$key]['sectionTime'] = $schedule->section * 15;
             }
         }
     }
