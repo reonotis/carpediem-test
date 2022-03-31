@@ -208,7 +208,7 @@ function func_show_course_schedule_list($atts) {
                             foreach($schedule as $data){
                                 $HTML .= '<span class="scheduleWeekContentTime">';
                                     $endTime = strtotime('+' . $data['sectionTime'] . 'minute', strtotime($data['start_time']));
-                                    $HTML .=  date('H:i', strtotime($data['start_time'])) . '～' . date('H:i', $endTime);
+                                    $HTML .=  date('H:i', strtotime($data['start_time'])) . ' ～ ' . date('H:i', $endTime);
                                 $HTML .= '</span>';
                             }
                         $HTML .= '</div>';
