@@ -209,12 +209,14 @@ function get_course_name($course_id){
  */
 function setting_SchedulesForWeekAndTime($scheduleList){
     $result = [];
-    for($i = 0; $i < 7; $i++){ // 日曜日から土曜日まで回す
-        $result[$i] = [];
+    $weekNoList = [ 1, 2, 3, 4, 5, 6, 7, 0]; // 1=月 ～ 0=日の順番
+    foreach($weekNoList as $weekNo ){
+        $result[$weekNo] = [];
         foreach($scheduleList as $key => $schedule){
-            if($schedule->week == $i){
-                $result[$i][$key]['start_time'] = $schedule->time;
-                $result[$i][$key]['sectionTime'] = $schedule->section * 15;
+            if($schedule->week == $weekNo){
+                $result[$weekNo][$key]['start_time'] = $schedule->time;
+                $result[$weekNo][$key]['sectionTime'] = $schedule->section * 15;
+                $result[$weekNo][$key]['support'] = $schedule->course_name;
             }
         }
     }

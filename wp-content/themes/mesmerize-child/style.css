@@ -1,7 +1,7 @@
 /*
 Theme Name:mesmerize-child
 Template:mesmerize
-Version: 1.6.107
+Version: 1.6.109
 
 */
 /* active-line-bottom  dropdown-menu */
@@ -442,9 +442,13 @@ ul.newNotice li:hover{
 .scheduleWeekContentTime{
 	display: block;
 	width: 100%;
+    margin-bottom: 3px;
 	padding: 0 8px 0 0;
 }
-
+.scheduleWeekContentTimeSupport{
+	color: #696969;
+	padding: 0 0 0 8px;
+}
 
 
 

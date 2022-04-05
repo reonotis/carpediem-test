@@ -186,30 +186,35 @@ function func_show_course_schedule_list($atts) {
     $atts = shortcode_atts(array(
         "course_id" => NULL,
     ),$atts);
-    $course_id = $atts['course_id'];
-    $course_name = get_course_name($course_id);
-    $scheduleList = get_displayPossible_schedules($course_id);
+    $course_id = $atts['course_id'];  // カンマ区切りで複数受け取る可能性あり
+
+    $courseIdArray = explode(",", $course_id);
+    $course_name = get_course_name($courseIdArray[0]); // 1つ目のコース名を取得する
+    $scheduleList = get_displayPossible_schedules($course_id); // 全てのスケジュールを取得する
     $scheduleList = setting_SchedulesForWeekAndTime($scheduleList);
 
     $HTML = '<div class="courseScheduleListArea" >';
         $HTML .= '<div class="courseScheduleWrapper">';
-            $HTML .= '<div class="courseScheduleWrapperTitle" id="courseScheduleWrapperTitle'.$course_id.'">';
+            $HTML .= '<div class="courseScheduleWrapperTitle" id="courseScheduleWrapperTitle'.$courseIdArray[0].'">';
                 $HTML .= $course_name . 'の開催日時を確認する';
             $HTML .= '</div>';
         $HTML .= '</div>';
-        $HTML .= '<div class="courseScheduleContent" id="courseScheduleContent'.$course_id.'" style="display: none;">';
+        $HTML .= '<div class="courseScheduleContent" id="courseScheduleContent'.$courseIdArray[0].'" style="display: none;">';
             foreach($scheduleList as $week => $schedule){
                 if(!empty($schedule)){
                     $HTML .= '<div class="scheduleWeekRow">';
                         // 曜日を表示する
-                        $HTML .= '<div class="scheduleWeekName">' . get_weekName($week) . ' :</div>';
+                        $HTML .= '<div class="scheduleWeekName">' . get_weekName($week) . ' </div>';
                         // 時間を全て表示する
                         $HTML .= '<div class="scheduleWeekContent">';
                             foreach($schedule as $data){
-                                $HTML .= '<span class="scheduleWeekContentTime">';
+                                $HTML .= '<p class="scheduleWeekContentTime">';
                                     $endTime = strtotime('+' . $data['sectionTime'] . 'minute', strtotime($data['start_time']));
-                                    $HTML .=  date('H:i', strtotime($data['start_time'])) . ' ～ ' . date('H:i', $endTime);
-                                $HTML .= '</span>';
+                                    $HTML .= date('H:i', strtotime($data['start_time'])) . ' ～ ' . date('H:i', $endTime) ;
+                                    $HTML .= '<span class="scheduleWeekContentTimeSupport">(';
+                                        $HTML .= $data['support'];
+                                    $HTML .= ')</span>';
+                                $HTML .= '</p>';
                             }
                         $HTML .= '</div>';
                     $HTML .= '</div>';
